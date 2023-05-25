@@ -1,4 +1,20 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/home",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
+  images: {
+    domains: ["i.ytimg.com", "yt3.ggpht.com"],
+  },
+  env: {
+    RAPIDKEY1: process.env.RAPIDKEY1,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
