@@ -1,13 +1,15 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { Welcome, WelcomeDatum } from "@/types/channelDetailsTypes";
 
-interface ChannelDetailsState {
+import { RootState } from "../store";
+import { Datum, Welcome } from "@/types/channelVideosTypes";
+
+interface ChannelLiveStreamsState {
   data: Welcome;
   status: "idle" | "loading" | "succeeded" | "failed";
 }
 
-const initialState: ChannelDetailsState = {
+const initialState: ChannelLiveStreamsState = {
   data: {
     meta: {
       channelId: "",
@@ -21,7 +23,7 @@ const initialState: ChannelDetailsState = {
       subscriberCountText: "",
       subscriberCount: 0,
       videosCountText: "",
-      videosCount: "",
+      videosCount: 0,
       isVerified: false,
       keywords: [],
       isFamilySafe: false,
@@ -35,11 +37,11 @@ const initialState: ChannelDetailsState = {
   status: "idle",
 };
 
-export const fetchChannelDetails = createAsyncThunk(
-  "channelDetails/fetchChannelDetails",
+export const fetchChannelLiveStreams = createAsyncThunk(
+  "channelLiveStreams/fetchChannelLiveStreams",
   async (id: string) => {
     const response = await axios.get(
-      `https://yt-api.p.rapidapi.com/channel/home`,
+      `https://yt-api.p.rapidapi.com/channel/liveStreams`,
       {
         headers: {
           "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
@@ -50,29 +52,29 @@ export const fetchChannelDetails = createAsyncThunk(
         },
       }
     );
-    console.log("channelDetails fetched");
+    console.log("channelLiveStreams fetched");
 
     return response.data as Welcome;
   }
 );
 
-const channelDetailsSlice = createSlice({
-  name: "channelDetails",
+const channelLiveStreamsSlice = createSlice({
+  name: "channelLiveStreams",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchChannelDetails.pending, (state) => {
+      .addCase(fetchChannelLiveStreams.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchChannelDetails.fulfilled, (state, action) => {
+      .addCase(fetchChannelLiveStreams.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
       })
-      .addCase(fetchChannelDetails.rejected, (state) => {
+      .addCase(fetchChannelLiveStreams.rejected, (state) => {
         state.status = "failed";
       });
   },
 });
 
-export default channelDetailsSlice.reducer;
+export default channelLiveStreamsSlice.reducer;

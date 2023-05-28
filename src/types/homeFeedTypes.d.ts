@@ -1,14 +1,16 @@
 export interface Welcome {
-  filters: Filter[];
+  filters?: Filter[];
   continuation: string;
   data: WelcomeDatum[];
   msg: string;
 }
 
 export interface WelcomeDatum {
-  type: FluffyType;
+  type?: FluffyType;
+  title?: string;
+  subtitle?: null;
+  data?: DatumDatum[];
   videoId?: string;
-  title: string;
   channelTitle?: string;
   channelId?: string;
   channelThumbnail?: Thumbnail[];
@@ -20,24 +22,22 @@ export interface WelcomeDatum {
   lengthText?: string;
   thumbnail?: Thumbnail[];
   richThumbnail?: Thumbnail[] | null;
-  subtitle?: null;
-  data: DatumDatum[];
   isLive?: boolean;
   badges?: string[];
 }
 
 export interface Thumbnail {
-  url: string;
-  width: number;
-  height: number;
+  url?: string;
+  width?: number;
+  height?: number;
 }
 
 export interface DatumDatum {
-  type: PurpleType;
-  videoId: string;
+  type?: PurpleType;
+  videoId?: string;
   title: string;
   viewCountText?: string;
-  thumbnail: Thumbnail[];
+  thumbnail?: Thumbnail[];
   isOriginalAspectRatio?: boolean;
   params?: Params;
   playerParams?: PlayerParams;
@@ -51,7 +51,7 @@ export interface DatumDatum {
   publishDate?: Date;
   publishedAt?: Date;
   lengthText?: string;
-  richThumbnail?: Thumbnail[];
+  richThumbnail?: Thumbnail[] | null;
 }
 
 export enum Params {
@@ -74,14 +74,6 @@ export enum FluffyType {
 }
 
 export interface Filter {
-  filter: string;
+  filter?: string;
   continuation?: string;
-}
-
-export interface HomeFeedState {
-  filters: Filter[];
-  continuation: string;
-  data: WelcomeDatum[];
-  msg: string;
-  status: string;
 }

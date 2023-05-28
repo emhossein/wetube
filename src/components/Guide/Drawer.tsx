@@ -8,10 +8,12 @@ const Drawer = () => {
   return (
     <nav
       id="navigation-guide"
-      className="p-3 md:block hidden max-w-[240px] w-full text-white"
+      className="hidden w-full max-w-[240px] p-3 text-white md:block"
     >
-      <DrawerItem text="Home" icon={HomeIcon} />
-      <DrawerItem text="Explore" icon={ExploreIcon} />
+      <div className="sticky top-14">
+        <DrawerItem text="home" icon={HomeIcon} />
+        <DrawerItem text="explore" icon={ExploreIcon} />
+      </div>
     </nav>
   );
 };

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const guideState = createSlice({
   name: "guideState",
   initialState: {
-    page: "Home",
+    page: "home",
   },
   reducers: {
     pageChange: (state, action) => {

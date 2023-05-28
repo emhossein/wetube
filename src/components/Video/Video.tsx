@@ -1,48 +1,71 @@
 /* eslint-disable @next/next/no-img-element */
 
-import React from "react";
+import React, { useState } from "react";
 import formatNumber from "./../../utils/numberFormat";
-import { formatDistance, parseISO } from "date-fns";
-import { WelcomeDatum } from "@/types/homeFeedTypes";
-import Image from "next/image";
+import { DatumDatum } from "@/types/homeFeedTypes";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
-const Video = ({ item }: { item: WelcomeDatum }) => {
-  const targetDate = parseISO("2023-04-24 14:02:32.000000");
-  const timeDistance = formatDistance(targetDate, new Date(), {
-    addSuffix: true,
-  });
+import placeholderImage from "/public/placeholder.webp";
+
+const Video = ({ item }: { item: DatumDatum }) => {
+  const [image, setImage] = useState<string | undefined | StaticImageData>(
+    item?.thumbnail?.[0]?.url
+  );
+
+  const handleImageLoadError = () => {
+    setImage(placeholderImage);
+  };
 
   return (
     <div className="max-w-[360px] hover:cursor-pointer">
-      <div className="relative bg-gray-350 rounded-xl overflow-hidden">
-        <img
-          src={item?.thumbnail?.[0]?.url}
+      <div className="relative overflow-hidden rounded-xl bg-gray-350">
+        <Image
+          src={image || placeholderImage}
           alt={item.title}
-          className="w-full h-[203px] object-cover"
+          className="h-[203px] w-full object-cover"
+          width={360}
+          height={203}
+          onError={handleImageLoadError}
         />
-        <p className="absolute bg-black bg-opacity-60 bottom-[2%] right-[2%] text-white text-xs px-1 rounded-sm">
+        <p
+          className={`absolute ${
+            item.lengthText === "LIVE" ? "bg-red-brand" : "bg-black"
+          } bottom-[4%] right-[2%] rounded-sm bg-opacity-60 px-1 text-xs text-white`}
+        >
           {item.lengthText}
         </p>
       </div>
-      <div className="flex mt-3 text-white">
+      <div className="mt-3 flex text-white">
         <Link href={`/channel/${item.channelId}`}>
           <img
             src={item?.channelThumbnail?.[0]?.url}
-            alt="Juxtopposed-avatar"
-            className="left | w-9 h-9 rounded-full mr-3"
+            alt={item.title}
+            className="left | mr-3 h-9 w-9 rounded-full"
           />
         </Link>
-        <div className="right | truncate">
-          <p className="truncate text-base font-semibold mb-1">{item.title}</p>
+        <div className="right | w-[80%] truncate">
+          <p
+            id={`content-title-${item.videoId}`}
+            className="mb-1 truncate text-base font-semibold"
+          >
+            {item.title}
+          </p>
+          <ReactTooltip
+            anchorSelect={`#content-title-${item.videoId}`}
+            content={item.title}
+            noArrow
+            style={{ zIndex: 20 }}
+          />
           <Link href={`/channel/${item.channelId}`}>
             <p className="text-sm leading-8 hover:font-semibold">
               {item.channelTitle}
             </p>
           </Link>
           <p className="text-sm">
-            {formatNumber(Number(item.viewCount))} •{" "}
-            {timeDistance.replace("about", "")}
+            {formatNumber(Number(item.viewCount))} views •{" "}
+            {item.publishedTimeText}
           </p>
         </div>
       </div>

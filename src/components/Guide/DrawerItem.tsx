@@ -17,25 +17,21 @@ const DrawerItems: React.FC<Props> = ({ text, icon: Icon }) => {
   };
 
   return (
-    <div>
-      <Link
-        id={`nav-item-${text}`}
-        href={`/${text.toLowerCase()}`}
-        onClick={handlePageStateChange}
-        className={`flex items-center ${
-          text === page && "bg-gray-350"
-        }  h-10 space-x-6 px-4 rounded-xl hover:cursor-pointer ${
-          text === page ? "hover:bg-gray-hover" : "hover:bg-gray-350"
-        }`}
-      >
-        {Icon && <Icon />}
-        <p
-          className={`text-base font-${text === page ? "semibold" : "normal"}`}
-        >
-          {text}
-        </p>
-      </Link>
-    </div>
+    <Link
+      id={`nav-item-${text}`}
+      href={`/${text.toLowerCase()}`}
+      onClick={handlePageStateChange}
+      className={`flex items-center ${
+        text === page && "bg-gray-350"
+      }  h-10 space-x-6 rounded-xl px-4 hover:cursor-pointer ${
+        text === page ? "hover:bg-gray-hover" : "hover:bg-gray-350"
+      }`}
+    >
+      {Icon && <Icon />}
+      <p className={`text-base font-${text === page ? "semibold" : "normal"}`}>
+        {text}
+      </p>
+    </Link>
   );
 };
 

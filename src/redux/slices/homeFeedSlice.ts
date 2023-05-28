@@ -1,12 +1,19 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { Filter, HomeFeedState, WelcomeDatum } from "@/types/homeFeedTypes";
+import { Filter, Welcome, WelcomeDatum } from "@/types/homeFeedTypes";
+import { RootState } from "../store";
+
+interface HomeFeedState {
+  data: Welcome;
+  status: "idle" | "loading" | "succeeded" | "failed";
+}
 
 const initialState: HomeFeedState = {
-  filters: [],
-  continuation: "",
-  data: [],
-  msg: "",
+  data: {
+    continuation: "",
+    data: [],
+    msg: "",
+  },
   status: "idle",
 };
 
@@ -28,6 +35,37 @@ export const fetchHomeFeed = createAsyncThunk(
   }
 );
 
+export const fetchAdditionalHomeFeed = createAsyncThunk(
+  "channelShorts/fetchAdditionalHomeFeed",
+  async ({ token }: { token?: string }, { getState }) => {
+    const currentState = getState() as RootState;
+    const prevData = currentState.homeFeedReducer.data.data;
+
+    const response = await axios.get(`https://yt-api.p.rapidapi.com/home`, {
+      headers: {
+        "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
+        "X-RapidAPI-Key": process.env.RAPIDKEY1,
+      },
+      params: {
+        lang: "en",
+        token,
+      },
+    });
+
+    const newData = response.data.data;
+    const newContinuation = response.data.continuation;
+    const combinedData = [...prevData, ...newData];
+
+    console.log("homeFeed updated");
+
+    return {
+      ...currentState.homeFeedReducer.data,
+      continuation: newContinuation,
+      data: combinedData,
+    };
+  }
+);
+
 const homeFeedSlice = createSlice({
   name: "homeFeed",
   initialState,
@@ -43,6 +81,13 @@ const homeFeedSlice = createSlice({
       })
       .addCase(fetchHomeFeed.rejected, (state) => {
         state.status = "failed";
+      })
+      .addCase(fetchAdditionalHomeFeed.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(fetchAdditionalHomeFeed.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.data = action.payload;
       });
   },
 });

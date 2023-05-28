@@ -12,9 +12,14 @@ module.exports = {
         white: "#F1F1F1",
         "gray-350": "#303030",
         "gray-hover": "#3D3D3D",
+        "red-brand": "#FF0000",
+        "gray-light": "#AAAAAA",
       },
       fontSize: {
         body: "1.3rem",
+      },
+      spacing: {
+        "80%": "68vw",
       },
     },
   },

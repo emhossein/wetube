@@ -1,86 +1,90 @@
 export interface Welcome {
   meta: Meta;
-  continuation: string;
+  continuation?: string;
   data: WelcomeDatum[];
-  msg: string;
+  msg?: string;
 }
 
 export interface WelcomeDatum {
-  type: FluffyType;
-  videoId?: string;
+  type: string;
   title: string;
-  viewCount?: string;
-  publishedTimeText?: string;
-  publishDate?: Date;
-  publishedAt?: Date;
-  description?: string;
-  subtitle?: null | string;
-  data?: DatumDatum[];
+  subtitle?: null;
+  data: DatumDatum[];
 }
 
 export interface DatumDatum {
-  type: PurpleType;
-  videoId: string;
+  type: string;
+  videoId?: string;
   title: string;
-  viewCount?: string;
-  publishedTimeText?: string;
-  publishDate?: Date;
-  publishedAt?: Date;
-  lengthText?: string;
-  thumbnail: Avatar[];
   channelTitle?: string;
   channelId?: string;
   channelThumbnail?: Avatar[];
   description?: string;
-  richThumbnail?: Avatar[];
-  viewCountText?: string;
-  isOriginalAspectRatio?: boolean;
-  params?: Params;
-  playerParams?: PlayerParams;
-  sequenceParams?: string;
+  viewCount?: string;
+  publishedTimeText?: null | string;
+  publishDate?: Date | null;
+  lengthText?: string;
+  isLive?: boolean;
+  thumbnail?: Avatar[];
+  richThumbnail?: null;
+  publishedAt?: string;
+  videoCount?: string;
+  subscriberCount?: string;
+  data: Data[];
 }
 
 export interface Avatar {
   url: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
-export enum Params {
-  CBEwAg3D3D = "CBEwAg%3D%3D",
-}
-
-export enum PlayerParams {
-  The8AEByAMkuAQR = "8AEByAMkuAQR",
-}
-
-export enum PurpleType {
-  Shorts = "shorts",
+export enum Type {
+  Channel = "channel",
   Video = "video",
 }
 
-export enum FluffyType {
-  Player = "player",
-  ShortsListing = "shorts_listing",
-  VideoListing = "video_listing",
-}
-
 export interface Meta {
-  channelId: string;
+  channelId?: string;
   title: string;
   description: string;
   channelHandle: string;
   banner: Avatar[];
-  tvBanner: Avatar[];
-  mobileBanner: Avatar[];
+  tvBanner?: Avatar[];
+  mobileBanner?: Avatar[];
   avatar: Avatar[];
-  subscriberCountText: string;
-  subscriberCount: number;
-  videosCountText: string;
-  videosCount: number;
-  isVerified: boolean;
-  keywords: string[];
-  isFamilySafe: boolean;
-  availableCountries: string[];
+  subscriberCountText?: string;
+  subscriberCount?: number;
+  videosCountText?: string;
+  videosCount?: string;
+  isVerified?: boolean;
+  keywords?: string[];
+  isFamilySafe?: boolean;
+  availableCountries?: string[];
   tabs: string[];
+}
+
+export interface Data {
+  type: string;
+  videoId?: string;
+  title: string;
+  channelTitle?: string;
+  channelId?: string;
+  channelThumbnail?: Thumbnail[];
+  description?: string;
+  viewCount?: string;
+  publishedTimeText?: string | null;
+  publishDate?: Date | null;
+  lengthText?: string;
+  isLive?: boolean;
+  thumbnail: Thumbnail[];
+  richThumbnail?: null;
+  publishedAt?: string;
+  viewCountText?: string;
+}
+
+export interface Thumbnail {
+  url: string;
+  width?: number;
+  height?: number;
 }

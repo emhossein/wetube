@@ -2,26 +2,35 @@
 
 import VideoContainer from "@/components/Video/VideoContainer";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { fetchHomeFeed } from "@/redux/slices/homeFeedSlice";
+import {
+  fetchAdditionalHomeFeed,
+  fetchHomeFeed,
+} from "@/redux/slices/homeFeedSlice";
 import { useEffect } from "react";
-import { HomeFeedState, Welcome, WelcomeDatum } from "@/types/homeFeedTypes";
+import { Welcome, WelcomeDatum } from "@/types/homeFeedTypes";
+import { useBottomReached } from "@/hooks/useBottomReached";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export default function Home() {
+  const isBottomReached = useBottomReached();
   const dispatch = useAppDispatch();
-  const { data }: HomeFeedState = useAppSelector(
-    (state) => state.homeFeedReducer
-  );
+  const { data, status } = useAppSelector((state) => state.homeFeedReducer);
 
   useEffect(() => {
-    if (!data) {
-      dispatch(fetchHomeFeed());
-    }
-    // console.log(data);
+    dispatch(fetchHomeFeed());
   }, []);
 
+  useEffect(() => {
+    if (isBottomReached && data.continuation) {
+      dispatch(fetchAdditionalHomeFeed({ token: data.continuation }));
+    }
+    console.log(status);
+  }, [isBottomReached]);
+
   return (
-    <main className="flex flex-1 w-full min-h-screen flex-col pt-3">
-      <VideoContainer data={data as WelcomeDatum[]} />
+    <main className="flex min-h-screen w-full flex-1 flex-col pr-3 pt-3">
+      <VideoContainer data={data as any} />
+      {status === "loading" && <LoadingSpinner />}
     </main>
   );
 }

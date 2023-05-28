@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "@/components/Guide/Header";
 import "./globals.css";
 import { Inter, Roboto } from "next/font/google";
@@ -18,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} | bg-black`}>
+      <body className={`${roboto.className} | overflow-x-hidden bg-black`}>
         <Providers>
           <Header />
           <div className="flex">

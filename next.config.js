@@ -10,7 +10,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ["i.ytimg.com", "yt3.ggpht.com"],
+    domains: ["i.ytimg.com", "yt3.ggpht.com", "yt3.googleusercontent.com"],
   },
   env: {
     RAPIDKEY1: process.env.RAPIDKEY1,
