@@ -15,6 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <title>VisionTube</title>
+      </head>
       <body className={`${roboto.className} | overflow-x-hidden bg-black`}>
         <Providers>
           <Header />

@@ -47,6 +47,9 @@ dependencies:
   react-redux:
     specifier: ^8.0.5
     version: 8.0.5(@types/react-dom@18.2.4)(@types/react@18.2.7)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+  react-tuby:
+    specifier: ^0.1.24
+    version: 0.1.24(react@18.2.0)
   react-visibility-sensor:
     specifier: ^5.1.1
     version: 5.1.1(react-dom@18.2.0)(react@18.2.0)
@@ -2847,6 +2850,15 @@ packages:
       react-is: 18.2.0
       redux: 4.2.1
       use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /react-tuby@0.1.24(react@18.2.0):
+    resolution: {integrity: sha512-NbCZSgzzeP1vnXpeb6mWlTmIbJVYcputd7Sck14ZN12mREO+IndPQHLfDL3S/l1CKuualFyK+fvpoq79EyYx0A==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-visibility-sensor@5.1.1(react-dom@18.2.0)(react@18.2.0):

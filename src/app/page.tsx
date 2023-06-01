@@ -9,7 +9,7 @@ import {
 import { useEffect } from "react";
 import { useBottomReached } from "@/hooks/useBottomReached";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import HomeFeedShorts from "@/components/HomeFeed/HomeFeedShortsListing";
+import HomeFeedShortsListing from "@/components/HomeFeed/HomeFeedShortsListing";
 
 export default function Home() {
   const isBottomReached = useBottomReached();
@@ -17,6 +17,7 @@ export default function Home() {
   const { data, status } = useAppSelector((state) => state.homeFeedReducer);
 
   const shorts = data.data.filter((dt) => dt.type === "shorts_listing");
+  const videos = data.data.filter((dt) => dt.type === "video_listing");
 
   useEffect(() => {
     dispatch(fetchHomeFeed());
@@ -30,7 +31,12 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen w-4/5 flex-1 flex-col pt-3 md:pr-3">
-      {shorts && <HomeFeedShorts shorts={shorts} />}
+      {shorts && status === "succeeded" && (
+        <HomeFeedShortsListing dtType="shorts" shorts={shorts} />
+      )}
+      {videos && status === "succeeded" && (
+        <HomeFeedShortsListing shorts={videos} />
+      )}
       <VideoContainer data={data as any} />
       {status === "loading" && <LoadingSpinner />}
     </main>

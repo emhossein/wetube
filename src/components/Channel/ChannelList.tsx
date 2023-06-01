@@ -9,8 +9,15 @@ import {
   BreakPointHooks,
   breakpointsTailwind,
 } from "@react-hooks-library/core";
+import { ShortsIcon } from "../Icons";
 
-const ChannelList = ({ video }: { video: DatumDatum }) => {
+const ChannelList = ({
+  video,
+  dtType,
+}: {
+  video: DatumDatum;
+  dtType?: string;
+}) => {
   const [pos, setPos] = useState(0);
   const [itemWidth, setItemWidth] = useState(0);
   const [isLastItemVisible, setIsLastItemVisible] = useState(false);
@@ -47,7 +54,8 @@ const ChannelList = ({ video }: { video: DatumDatum }) => {
 
   return (
     <div className="relative space-x-0 overflow-hidden md:w-[70vw] md:space-x-1 lg:mx-auto">
-      <h3 className="my-3 px-2 text-sm font-semibold md:p-0 md:text-lg">
+      <h3 className="my-3 flex px-2 text-sm font-semibold md:p-0 md:text-lg">
+        {dtType === "shorts" && <ShortsIcon className="mr-2" />}
         {video.title}
       </h3>
       {video.data.length > 6 && !small && (
@@ -90,7 +98,11 @@ const ChannelList = ({ video }: { video: DatumDatum }) => {
                 ref={itemRef}
                 className="mb-3 w-full flex-none sm:w-1/4 md:w-1/4 lg:w-[16.4%]"
               >
-                <Link href={`/video/${dt.videoId}`}>
+                <Link
+                  href={`/${dtType === "shorts" ? "shorts" : "video"}/${
+                    dt.videoId
+                  }`}
+                >
                   <ChannelItems dt={dt} />
                 </Link>
               </div>

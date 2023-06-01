@@ -31,7 +31,7 @@ const ChannelVideoContainer = ({
       {dataType === "shorts" &&
         shorts?.map((item: Datum) => {
           return (
-            <Link key={item.videoId} href={`/video/${item.videoId}`}>
+            <Link key={item.videoId} href={`/shorts/${item.videoId}`}>
               <ChannelVideo
                 dataType={dataType}
                 key={item.videoId}

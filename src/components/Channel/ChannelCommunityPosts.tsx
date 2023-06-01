@@ -20,7 +20,6 @@ const ChannelCommunityPosts = ({ id }: { id: string }) => {
 
   useEffect(() => {
     dispatch(fetchChannelCommunity(id));
-    console.log(data);
   }, []);
 
   useEffect(() => {
@@ -62,7 +61,10 @@ const ChannelCommunityPosts = ({ id }: { id: string }) => {
               {dt.attachment?.type === "image" && (
                 <Image
                   fill
-                  src={dt?.attachment?.image?.[2].url}
+                  src={
+                    dt?.attachment?.image?.[dt?.attachment?.image.length - 1]
+                      .url
+                  }
                   alt={dt.attachment.type}
                   className="position-unset | mt-4 rounded-md"
                 />
@@ -72,7 +74,11 @@ const ChannelCommunityPosts = ({ id }: { id: string }) => {
                   <div className="mt-4 w-1/2 rounded-md">
                     <Image
                       fill
-                      src={dt?.attachment?.image?.[0][2].url}
+                      src={
+                        dt?.attachment?.image?.[0][
+                          dt?.attachment?.image?.[0].length - 1
+                        ].url
+                      }
                       alt={dt.attachment.type}
                       className="position-unset | rounded-md"
                     />
@@ -80,7 +86,11 @@ const ChannelCommunityPosts = ({ id }: { id: string }) => {
                   <div className="mt-4 w-1/2 rounded-md">
                     <Image
                       fill
-                      src={dt?.attachment?.image?.[1][2].url}
+                      src={
+                        dt?.attachment?.image?.[1][
+                          dt?.attachment?.image?.[1].length - 1
+                        ].url
+                      }
                       alt={dt.attachment.type}
                       className="position-unset | rounded-md"
                     />

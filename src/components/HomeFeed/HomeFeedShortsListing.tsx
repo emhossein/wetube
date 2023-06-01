@@ -8,7 +8,13 @@ import {
   breakpointsTailwind,
 } from "@react-hooks-library/core";
 
-const HomeFeedShortsListing = ({ shorts }: { shorts: WelcomeDatum[] }) => {
+const HomeFeedShortsListing = ({
+  shorts,
+  dtType,
+}: {
+  shorts: WelcomeDatum[];
+  dtType?: "shorts" | "video";
+}) => {
   const [pos, setPos] = useState(0);
   const [isLastItemVisible, setIsLastItemVisible] = useState(false);
 
@@ -53,8 +59,8 @@ const HomeFeedShortsListing = ({ shorts }: { shorts: WelcomeDatum[] }) => {
         &gt;
       </button>
       <div className="my-4 flex items-center space-x-2">
-        <ShortsIcon />
-        <h1 className="text-lg">Shorts</h1>
+        {dtType === "shorts" && <ShortsIcon />}
+        <h1 className="text-lg">{shorts[0].title}</h1>
       </div>
       {shorts.map((shorts, i) => {
         return (
@@ -74,7 +80,11 @@ const HomeFeedShortsListing = ({ shorts }: { shorts: WelcomeDatum[] }) => {
                   partialVisibility={"right"}
                   key={short.videoId}
                 >
-                  <HomeFeedShorts short={short} key={short.videoId} />
+                  <HomeFeedShorts
+                    dtType={dtType}
+                    short={short}
+                    key={short.videoId}
+                  />
                 </VisibilitySensor>
               );
             })}

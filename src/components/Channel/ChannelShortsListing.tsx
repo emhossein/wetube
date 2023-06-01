@@ -10,7 +10,9 @@ const ChannelShortsListing = ({ shorts }: { shorts: DatumDatum[] }) => {
   return (
     <div className="text-white">
       {shorts.map((short) => {
-        return <ChannelList video={short} key={short.videoId} />;
+        return (
+          <ChannelList dtType="shorts" video={short} key={short.videoId} />
+        );
       })}
     </div>
   );

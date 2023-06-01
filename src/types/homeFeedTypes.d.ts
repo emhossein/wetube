@@ -44,7 +44,7 @@ export interface DatumDatum {
   sequenceParams?: string;
   channelTitle?: string;
   channelId?: string;
-  channelThumbnail?: Thumbnail[];
+  channelThumbnail: Thumbnail[];
   description?: string;
   viewCount?: string;
   publishedTimeText?: string;
