@@ -21,11 +21,13 @@ const Player = ({ data }: { data: Welcome }) => {
 
   return (
     <div className="w-full text-white">
-      <video
-        src={mp4[0].url}
-        controls
-        className="aspect-video w-full md:w-4/5"
-      />
+      {mp4 && (
+        <video
+          src={mp4[0]?.url}
+          controls
+          className="aspect-video w-full md:w-4/5"
+        />
+      )}
     </div>
   );
 };
