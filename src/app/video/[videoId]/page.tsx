@@ -16,6 +16,7 @@ const Page = () => {
 
   useEffect(() => {
     dispatch(fetchVideo(id));
+    console.log(id);
   }, []);
 
   return (
