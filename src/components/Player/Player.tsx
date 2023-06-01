@@ -5,8 +5,8 @@ import { Player as VideoPlayer } from "react-tuby";
 import "react-tuby/css/main.css";
 
 const Player = ({ data }: { data: Welcome }) => {
-  const mp4 = data.result.formats
-    .filter((format) => format.ext)
+  const mp4 = data?.result?.formats
+    ?.filter((format) => format?.ext === "mp4")
     .map((obj) => {
       return {
         quality: obj.format_note + " - " + bitsToMegabytes(obj.filesize),
