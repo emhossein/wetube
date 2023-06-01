@@ -10,7 +10,22 @@ interface PlaylistState {
 
 const initialState: PlaylistState = {
   data: {
-    meta: {},
+    meta: {
+      playlistId: "",
+      title: "",
+      description: null,
+      thumbnail: [],
+      videoCount: "",
+      videoCountText: "",
+      viewCount: "",
+      viewCountText: "",
+      lastUpdated: "",
+      avatar: [],
+      channelTitle: "",
+      channelId: "",
+      isEditable: false,
+      privacy: "",
+    },
     continuation: "",
     data: [],
     msg: "",

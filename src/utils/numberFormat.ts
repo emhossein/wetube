@@ -1,7 +1,7 @@
 export default function formatNumber(number: number): string {
   const symbols: string[] = ["", "K", "M", "B", "T"];
-  const regex: RegExp = /\.0+$|(\.[0-9]*[1-9])0+$/;
-  let symbolIndex: number = 0;
+  const regex = /\.0+$|(\.[0-9]*[1-9])0+$/;
+  let symbolIndex = 0;
 
   while (number >= 1000 && symbolIndex < symbols.length - 1) {
     number /= 1000;
