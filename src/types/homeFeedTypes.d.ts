@@ -27,7 +27,7 @@ export interface WelcomeDatum {
 }
 
 export interface Thumbnail {
-  url?: string;
+  url: string;
   width?: number;
   height?: number;
 }
@@ -37,7 +37,7 @@ export interface DatumDatum {
   videoId?: string;
   title: string;
   viewCountText?: string;
-  thumbnail?: Thumbnail[];
+  thumbnail: Thumbnail[];
   isOriginalAspectRatio?: boolean;
   params?: Params;
   playerParams?: PlayerParams;

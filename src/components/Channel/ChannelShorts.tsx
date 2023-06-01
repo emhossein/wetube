@@ -9,14 +9,12 @@ import React, { useEffect } from "react";
 import ChannelVideoContainer from "./ChannelVideoContainer";
 import LoadingSpinner from "../LoadingSpinner";
 
-const ChannelShorts = () => {
+const ChannelShorts = ({ id }: { id: string }) => {
   const dispatch = useAppDispatch();
   const { data, status } = useAppSelector(
     (state) => state.channelShortsReducer
   );
 
-  const pathname = usePathname();
-  const id = pathname.split("/")[2];
   const isBottomReached = useBottomReached();
 
   useEffect(() => {

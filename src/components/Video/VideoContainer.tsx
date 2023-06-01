@@ -4,7 +4,7 @@ import { DatumDatum, WelcomeDatum } from "@/types/homeFeedTypes";
 import Link from "next/link";
 
 const VideoContainer = ({ data }: { data: WelcomeDatum }) => {
-  const videos = data?.data?.filter((item: any) => item.type === "video");
+  const videos = data?.data?.filter((item) => item.type === "video");
 
   return (
     <div className="grid grid-cols-1 gap-x-2 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

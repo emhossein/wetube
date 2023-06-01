@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { DatumDatum } from "@/types/channelDetailsTypes";
 import React, { useState } from "react";
 import { VerifiedIcon } from "../Icons";

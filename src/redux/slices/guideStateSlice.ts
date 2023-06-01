@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface InitialState {
+  page: string;
+}
+
+const initialState: InitialState = {
+  page: "home",
+};
+
 export const guideState = createSlice({
   name: "guideState",
-  initialState: {
-    page: "home",
-  },
+  initialState,
   reducers: {
     pageChange: (state, action) => {
       state.page = action.payload;

@@ -8,14 +8,14 @@ const ChannelTabs = ({ tabs, id }: { tabs: string[]; id: string }) => {
   const { tabState } = useAppSelector((state) => state.channelTabsStateReducer);
 
   return (
-    <div className="text-white">
-      <div className="flex items-center w-4/5 mx-auto">
+    <div className="no-scrollbar | overflow-y-scroll text-white">
+      <div className="flex w-4/5 items-center space-x-3 lg:mx-auto">
         {tabs.map((tab) => {
           return (
             <Link
               key={tab}
               href={`/channel/${id}/${tab === "Home" ? "" : tab}`}
-              className={`center | w-[105px] h-12 ${
+              className={`center | h-12 text-xs md:w-fit md:text-sm lg:w-[105px] lg:text-base ${
                 tabState === tab && "border-b-2"
               }`}
               onClick={() => dispatch(tabChange(tab))}
@@ -25,7 +25,7 @@ const ChannelTabs = ({ tabs, id }: { tabs: string[]; id: string }) => {
           );
         })}
       </div>
-      <div className="w-full h-px bg-[#3F3F3F] -mt-px" />
+      <div className="-mt-px h-px w-full bg-[#3F3F3F]" />
     </div>
   );
 };

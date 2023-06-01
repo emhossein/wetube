@@ -4,6 +4,12 @@ import SearchIcon from "./SearchIcon";
 import YoutubeIcon from "./YoutubeIcon";
 import VerifiedIcon from "./VerifiedIcon";
 import CaretRightIcon from "./CaretRightIcon";
+import LikeIcon from "./LikeIcon";
+import PlaylistsIcon from "./PlaylistsIcon";
+import CommentIcon from "./CommentIcon";
+import MoreIcon from "./MoreIcon";
+import ShareIcon from "./ShareIcon";
+import ShortsIcon from "./ShortsIcon";
 
 export {
   HomeIcon,
@@ -12,4 +18,10 @@ export {
   YoutubeIcon,
   VerifiedIcon,
   CaretRightIcon,
+  LikeIcon,
+  PlaylistsIcon,
+  CommentIcon,
+  MoreIcon,
+  ShareIcon,
+  ShortsIcon,
 };

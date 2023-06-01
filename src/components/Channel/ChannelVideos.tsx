@@ -5,15 +5,11 @@ import {
 } from "@/redux/slices/channelVideosSlice";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
-import VideoContainer from "../Video/VideoContainer";
 import ChannelVideoContainer from "./ChannelVideoContainer";
 import { useBottomReached } from "@/hooks/useBottomReached";
 import LoadingSpinner from "../LoadingSpinner";
 
-const ChannelVideos = () => {
-  const pathname = usePathname();
-  const id = pathname.split("/")[2];
-
+const ChannelVideos = ({ id }: { id: string }) => {
   const dispatch = useAppDispatch();
   const { data, status } = useAppSelector(
     (state) => state.channelVideosReducer

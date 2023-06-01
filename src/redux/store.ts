@@ -7,6 +7,9 @@ import channelTabsStateReducer from "./slices/channelTabsStateSlice";
 import channelVideosReducer from "./slices/channelVideosSlice";
 import channelShortsReducer from "./slices/channelShortsSlice";
 import channelLiveStreamsReducer from "./slices/channelLiveStreamsSlice";
+import channelPlaylistsReducer from "./slices/channelPlayListsSlice";
+import channelCommunityReducer from "./slices/channelCommunitySlice";
+import playlistDetailsReducer from "./slices/playlistDetailsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -17,7 +20,11 @@ export const store = configureStore({
     channelVideosReducer,
     channelShortsReducer,
     channelLiveStreamsReducer,
+    channelPlaylistsReducer,
+    channelCommunityReducer,
+    playlistDetailsReducer,
   },
+
   devTools: process.env.NODE_ENV !== "production",
 });
 

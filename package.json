@@ -9,25 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-hooks-library/core": "^0.5.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.2.3",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
-    "date-fns": "^2.30.0",
     "eslint-config-next": "13.4.3",
-    "lodash": "^4.17.21",
-    "lodash.throttle": "^4.1.1",
     "next": "13.4.3",
+    "node-vibrant": "3.2.1-alpha.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-horizontal-scrolling-menu": "^4.0.4",
     "react-redux": "^8.0.5",
-    "react-tooltip": "^5.13.1",
+    "react-visibility-sensor": "^5.1.1",
     "tailwindcss": "3.3.2",
-    "timeago-react": "^3.0.6",
     "typescript": "5.0.4"
   },
   "devDependencies": {

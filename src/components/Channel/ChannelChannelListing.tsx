@@ -10,7 +10,7 @@ const ChannelChannelListing = ({ channels }: { channels: WelcomeDatum[] }) => {
         return (
           <div key={channel.title}>
             <p>{channel.title}</p>
-            <div className="mt-6 flex">
+            <div className="mt-6 flex flex-col items-center space-y-5 md:flex-row md:space-y-0">
               {channel.data.map((dt) => {
                 return (
                   <Link
@@ -20,7 +20,7 @@ const ChannelChannelListing = ({ channels }: { channels: WelcomeDatum[] }) => {
                   >
                     <div className="relative mb-1 min-h-[90px] min-w-[90px] overflow-hidden rounded-full md:h-24 md:w-24">
                       <Image
-                        src={`https:${dt.thumbnail?.[1].url!}`}
+                        src={`https:${dt.thumbnail?.[1].url}`}
                         alt={channel.title}
                         fill
                       />

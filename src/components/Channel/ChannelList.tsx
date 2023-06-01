@@ -1,58 +1,100 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { DatumDatum } from "@/types/channelDetailsTypes";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ChannelItems from "./ChannelItems";
+import VisibilitySensor from "react-visibility-sensor";
+import {
+  BreakPointHooks,
+  breakpointsTailwind,
+} from "@react-hooks-library/core";
 
 const ChannelList = ({ video }: { video: DatumDatum }) => {
   const [pos, setPos] = useState(0);
+  const [itemWidth, setItemWidth] = useState(0);
+  const [isLastItemVisible, setIsLastItemVisible] = useState(false);
 
-  const short = video.data.filter((s) => s.type === "shorts");
-  const hiddenBtn =
-    video.type === "shorts_listing"
-      ? short.length <= 12
-        ? 100
-        : short.length <= 18
-        ? 200
-        : 300
-      : 100;
+  const itemRef = useRef<HTMLDivElement>(null);
+
+  const { isSmaller } = BreakPointHooks(breakpointsTailwind);
+
+  const small = isSmaller("md");
+
+  const bigScreenMoveAmount = itemWidth * 6 + (video.data.length - 1) * 4;
+  const moveAmount = bigScreenMoveAmount;
+
+  const handleVisibilityChange = (index: number, isVisible: boolean) => {
+    if (index === video.data.length - 1) {
+      setIsLastItemVisible(isVisible);
+    }
+  };
+
+  useEffect(() => {
+    if (itemRef.current) {
+      const itemWidth = itemRef.current.offsetWidth;
+      setItemWidth(itemWidth);
+    }
+  }, [video]);
+
+  const handleBtnClick = (direction: boolean) => {
+    setPos((prev) => (direction ? (prev += moveAmount) : (prev -= moveAmount)));
+
+    if (pos < 0) {
+      setPos(0);
+    }
+  };
 
   return (
-    <div className="relative mx-auto w-[70vw] space-x-1 overflow-hidden">
-      <h3 className="my-3 text-lg font-semibold">{video.title}</h3>
-      {video.data.length > 6 && (
+    <div className="relative space-x-0 overflow-hidden md:w-[70vw] md:space-x-1 lg:mx-auto">
+      <h3 className="my-3 px-2 text-sm font-semibold md:p-0 md:text-lg">
+        {video.title}
+      </h3>
+      {video.data.length > 6 && !small && (
         <>
           <button
             className={`left | ${
-              pos === 0 ? "hidden" : "block"
-            } absolute left-0 top-1/2 z-10 h-10 w-10 -translate-y-1/2 rounded-full bg-gray-600`}
-            onClick={() => setPos((prev) => (prev -= 100))}
+              pos > 0 ? "md:block" : "hidden"
+            } absolute left-0 top-1/2 z-10 h-8 w-8 -translate-y-1/2 rounded-full bg-gray-600 lg:h-10 lg:w-10`}
+            onClick={() => handleBtnClick(false)}
           >
             &lt;
           </button>
           <button
             className={`right | ${
-              pos === hiddenBtn ? "hidden" : "block"
-            } absolute right-0 top-1/2 z-10 h-10 w-10 -translate-y-1/2 rounded-full bg-gray-600`}
-            onClick={() => setPos((prev) => (prev += 100))}
+              isLastItemVisible ? "hidden" : "md:block"
+            } absolute right-0 top-1/2 z-10 h-8 w-8 -translate-y-1/2 rounded-full bg-gray-600 lg:h-10 lg:w-10`}
+            onClick={() => handleBtnClick(true)}
           >
             &gt;
           </button>
         </>
       )}
-      {/* <div className="grid grid-cols-1 gap-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"> */}
       <div
-        className={`flex space-x-1 transition-transform duration-150 ease-in-out`}
-        style={{ transform: `translateX(-${pos}%)` }}
+        className={`no-scrollbar | ${
+          small && "overflow-y-scroll"
+        } flex  transition-transform duration-100 ease-in-out md:space-x-1`}
+        style={{ transform: `translateX(-${pos}px)` }}
       >
-        {video.data?.map((dt) => {
+        {video.data?.map((dt, index) => {
           return (
-            <Link
-              href={`/video/${dt.videoId}`}
+            <VisibilitySensor
+              onChange={(isVisible: boolean) =>
+                handleVisibilityChange(index, isVisible)
+              }
+              partialVisibility
+              offset={{ right: 1 }}
               key={dt.videoId}
-              className="mb-3 w-[16.4%] flex-none"
             >
-              <ChannelItems dt={dt} />
-            </Link>
+              <div
+                ref={itemRef}
+                className="mb-3 w-full flex-none sm:w-1/4 md:w-1/4 lg:w-[16.4%]"
+              >
+                <Link href={`/video/${dt.videoId}`}>
+                  <ChannelItems dt={dt} />
+                </Link>
+              </div>
+            </VisibilitySensor>
           );
         })}
       </div>

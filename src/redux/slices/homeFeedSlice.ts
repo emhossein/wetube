@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { Filter, Welcome, WelcomeDatum } from "@/types/homeFeedTypes";
+import { Welcome } from "@/types/homeFeedTypes";
 import { RootState } from "../store";
 
 interface HomeFeedState {
@@ -82,7 +82,7 @@ const homeFeedSlice = createSlice({
       .addCase(fetchHomeFeed.rejected, (state) => {
         state.status = "failed";
       })
-      .addCase(fetchAdditionalHomeFeed.pending, (state, action) => {
+      .addCase(fetchAdditionalHomeFeed.pending, (state) => {
         state.status = "loading";
       })
       .addCase(fetchAdditionalHomeFeed.fulfilled, (state, action) => {

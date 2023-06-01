@@ -1,30 +1,28 @@
-/* eslint-disable @next/next/no-img-element */
-
-import React, { useState } from "react";
+import React from "react";
 import formatNumber from "./../../utils/numberFormat";
 import Link from "next/link";
-import { Tooltip as ReactTooltip } from "react-tooltip";
 import { Datum } from "@/types/channelVideosTypes";
 import { useAppSelector } from "@/redux/hooks";
+import Image from "next/image";
 
 const Video = ({ item, dataType }: { item: Datum; dataType?: string }) => {
-  const [image] = useState<string | undefined>(
-    item?.thumbnail?.[item.thumbnail.length - 1]?.url
-  );
-
   const { data } = useAppSelector((state) => state.channelVideosReducer);
 
   return (
-    <div className="max-w-[360px] hover:cursor-pointer">
-      <div className="relative overflow-hidden rounded-xl bg-gray-350">
-        <img
-          src={image}
-          alt={item.title}
-          className="h-fit w-full object-cover"
-          width={360}
-
-          // onError={handleImageLoadError}
-        />
+    <div className="w-full hover:cursor-pointer md:max-w-[360px]">
+      <div
+        className={`relative ${
+          dataType === "shorts" && "h-52 md:h-72 lg:h-80"
+        } overflow-hidden bg-gray-350 md:rounded-xl`}
+      >
+        <div className="h-full w-full object-cover">
+          <Image
+            fill
+            src={item?.thumbnail?.[item.thumbnail.length - 1]?.url}
+            alt={item.title}
+            className="position-unset"
+          />
+        </div>
         <p
           className={`absolute ${
             item.lengthText === "LIVE" ? "bg-red-brand" : "bg-black"
@@ -34,22 +32,15 @@ const Video = ({ item, dataType }: { item: Datum; dataType?: string }) => {
         </p>
       </div>
       <div className="mt-3 flex text-white">
-        <div className="right | w-[80%] truncate">
+        <div className="right | w-[80%] truncate px-2 md:px-0">
           <p
-            id={`content-title-${item.videoId}`}
+            title={item.title}
             className={`mb-1 truncate ${
               dataType ? "text-base" : "text-sm"
             } font-semibold`}
           >
             {item.title}
           </p>
-
-          <ReactTooltip
-            anchorSelect={`#content-title-${item.videoId}`}
-            content={item.title}
-            noArrow
-            style={{ zIndex: 20 }}
-          />
 
           {!dataType && (
             <Link href={`/channel/${data.meta.channelId}`}>

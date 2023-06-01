@@ -10,8 +10,8 @@ const ChannelVideoContainer = ({
   data: Welcome;
   dataType: string;
 }) => {
-  const videos = data?.data?.filter((item: any) => item.type === "video");
-  const shorts = data?.data?.filter((item: any) => item.type === "shorts");
+  const videos = data?.data?.filter((item: Datum) => item.type === "video");
+  const shorts = data?.data?.filter((item: Datum) => item.type === "shorts");
 
   const className: string =
     dataType === "shorts"

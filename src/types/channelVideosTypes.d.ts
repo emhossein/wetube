@@ -22,6 +22,8 @@ export interface Datum {
   params?: Params;
   playerParams?: PlayerParams;
   sequenceParams?: string;
+  playlistId?: string;
+  videoCount?: string;
 }
 
 export interface Avatar {
@@ -33,6 +35,7 @@ export interface Avatar {
 export enum Type {
   Video = "video",
   Shorts = "shorts",
+  Playlist = "playlist",
 }
 
 export interface Meta {

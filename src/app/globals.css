@@ -10,6 +10,13 @@
   .center {
     @apply flex items-center justify-center;
   }
+
+  .glass {
+    @apply bg-white bg-opacity-20;
+  }
+  .glass-hover {
+    @apply hover:bg-opacity-30;
+  }
 }
 
 @layer utilities {
@@ -23,8 +30,7 @@
     scrollbar-width: none; /* Firefox */
   }
 
-  .slider-container {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
+  .position-unset {
+    position: unset !important;
   }
 }
