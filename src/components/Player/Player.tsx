@@ -5,8 +5,8 @@ import { Player as VideoPlayer } from "react-tuby";
 import "react-tuby/css/main.css";
 
 const Player = ({ data }: { data: Welcome }) => {
-  const mp4 = data?.result?.formats
-    ?.filter((format) => format.ext)
+  const mp4 = data.result.formats
+    .filter((format) => format.ext)
     .map((obj) => {
       return {
         quality: obj.format_note + " - " + bitsToMegabytes(obj.filesize),
@@ -17,7 +17,6 @@ const Player = ({ data }: { data: Welcome }) => {
   return (
     <div className="h-1/2 w-full text-white">
       <VideoPlayer src={mp4} />
-      {/* <video src="https://youtube.one-api.ir/64789a6d7a849" controls /> */}
     </div>
   );
 };
