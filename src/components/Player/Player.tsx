@@ -5,6 +5,8 @@ import { Player as VideoPlayer } from "react-tuby";
 import "react-tuby/css/main.css";
 
 const Player = ({ data }: { data: Welcome }) => {
+  console.log(data);
+
   const mp4 = data?.result?.formats?.filter(
     (format) => format.format === "18 - 640x360 (360p)"
   );
