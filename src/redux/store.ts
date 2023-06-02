@@ -11,6 +11,7 @@ import channelPlaylistsReducer from "./slices/channelPlayListsSlice";
 import channelCommunityReducer from "./slices/channelCommunitySlice";
 import playlistDetailsReducer from "./slices/playlistDetailsSlice";
 import videoReducer from "./slices/videosSlice";
+import relatedVideosReducer from "./slices/relatedVideosSlice";
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     channelCommunityReducer,
     playlistDetailsReducer,
     videoReducer,
+    relatedVideosReducer,
   },
 
   devTools: process.env.NODE_ENV !== "production",

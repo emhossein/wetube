@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
   page: string;
+  showGuide: boolean;
 }
 
 const initialState: InitialState = {
   page: "home",
+  showGuide: true,
 };
 
 export const guideState = createSlice({
@@ -15,9 +17,12 @@ export const guideState = createSlice({
     pageChange: (state, action) => {
       state.page = action.payload;
     },
+    toggleShowGuide: (state) => {
+      state.showGuide = !state.showGuide;
+    },
   },
 });
 
-export const { pageChange } = guideState.actions;
+export const { pageChange, toggleShowGuide } = guideState.actions;
 
 export default guideState.reducer;

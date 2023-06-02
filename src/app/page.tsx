@@ -15,6 +15,7 @@ export default function Home() {
   const isBottomReached = useBottomReached();
   const dispatch = useAppDispatch();
   const { data, status } = useAppSelector((state) => state.homeFeedReducer);
+  const { showGuide } = useAppSelector((state) => state.guideStateReducer);
 
   const shorts = data.data.filter((dt) => dt.type === "shorts_listing");
   const videos = data.data.filter((dt) => dt.type === "video_listing");
@@ -30,7 +31,11 @@ export default function Home() {
   }, [isBottomReached]);
 
   return (
-    <main className="flex min-h-screen w-4/5 flex-1 flex-col pt-3 md:pr-3">
+    <main
+      className={`flex min-h-screen w-4/5 flex-1 flex-col pt-3 ${
+        showGuide ? "md:pr-3" : "md:px-10"
+      }`}
+    >
       {shorts && status === "succeeded" && (
         <HomeFeedShortsListing dtType="shorts" shorts={shorts} />
       )}

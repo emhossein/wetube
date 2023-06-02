@@ -27,8 +27,14 @@ const HomeFeedShorts = ({
           alt={short.title}
           src={short.thumbnail[0].url}
           fill
-          className="position-unset | h-full object-cover md:rounded-lg"
+          className={`position-unset | h-full object-cover ${
+            dtType === "shorts" ? "rounded-lg" : "md:rounded-lg"
+          }`}
         />
+
+        <p className="absolute bottom-[4%] right-[2%] rounded-sm bg-black bg-opacity-60 px-1 text-xs text-white">
+          {short.lengthText}
+        </p>
       </div>
       {dtType === "shorts" ? (
         <h2

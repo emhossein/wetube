@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { SearchIcon, YoutubeIcon } from "../Icons";
+import { useAppDispatch } from "@/redux/hooks";
+import { toggleShowGuide } from "@/redux/slices/guideStateSlice";
+import {
+  BreakPointHooks,
+  breakpointsTailwind,
+} from "@react-hooks-library/core";
 
 const Navbar = () => {
+  const dispatch = useAppDispatch();
+  const { isSmaller } = BreakPointHooks(breakpointsTailwind);
+
+  const small = isSmaller("md");
+
+  const toggleGuide = () => {
+    dispatch(toggleShowGuide());
+  };
+
+  useEffect(() => {
+    if (small) {
+      toggleGuide();
+    }
+  }, []);
+
   return (
     <div className="sticky top-0 z-20 flex h-14 w-screen flex-1 items-center justify-between space-x-10 bg-black px-4 px-7 text-white">
-      <div className="left | flex items-center md:space-x-7">
-        <div className="hidden space-y-[5px] hover:cursor-pointer md:block">
+      <div className="left | flex items-center space-x-7">
+        <div
+          onClick={toggleGuide}
+          className="block space-y-[5px] hover:cursor-pointer"
+        >
           <div className="block h-[2px] w-6 bg-white" />
           <div className="block h-[2px] w-6 bg-white" />
           <div className="block h-[2px] w-6 bg-white" />

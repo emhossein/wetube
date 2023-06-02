@@ -1,0 +1,29 @@
+{
+  "name": "VisionTube",
+  "short_name": "VisionTube",
+  "scope": "/",
+  "start_url": "/",
+  "description": "Discover and stream a vast collection of high-quality videos on our online video watching platform. Explore diverse genres, including movies, TV shows, documentaries, and more. Enjoy an immersive viewing experience with our user-friendly interface and seamless playback. Watch your favorite videos anytime, anywhere, on any device. Join our community of avid viewers and embark on a captivating entertainment journey today!",
+  "prefer_related_applications": true,
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#FF0000",
+  "background_color": "#FF0000",
+  "display": "standalone",
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://visiontube.vercel.app"
+    }
+  ]
+}

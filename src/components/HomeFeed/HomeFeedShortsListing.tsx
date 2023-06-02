@@ -66,8 +66,8 @@ const HomeFeedShortsListing = ({
         return (
           <div
             key={i}
-            className={`no-scrollbar | ${
-              small && "overflow-y-scroll"
+            className={`no-scrollbar | ${small && "overflow-y-scroll"} ${
+              dtType === "shorts" && "px-2"
             } flex space-x-1 transition-transform duration-100 ease-in-out`}
             style={{ transform: `translateX(-${pos}%)` }}
           >

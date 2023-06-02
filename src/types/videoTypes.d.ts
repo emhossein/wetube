@@ -8,15 +8,15 @@ export interface Result {
   title?: string;
   formats: Format[];
   thumbnails?: Thumbnail[];
-  thumbnail?: string;
-  description?: string;
+  thumbnail: string;
+  description: string;
   uploader?: string;
   uploaderID?: string;
   uploaderURL?: string;
-  channelID?: string;
+  channel_id: string;
   channelURL?: string;
   duration?: number;
-  viewCount?: number;
+  view_count: number;
   ageLimit?: number;
   webpageURL?: string;
   categories?: Category[];
@@ -25,10 +25,10 @@ export interface Result {
   liveStatus?: string;
   automaticCaptions?: { [key: string]: AutomaticCaption[] };
   subtitles: Subtitles;
-  likeCount?: number;
+  like_count: number;
   channel?: string;
   channelFollowerCount?: number;
-  uploadDate?: UploadDate;
+  upload_date: UploadDate;
   availability?: string;
   webpageURLBasename?: string;
   webpageURLDomain?: string;
@@ -40,7 +40,7 @@ export interface Result {
   isLive?: boolean;
   wasLive?: boolean;
   format: string;
-  formatID?: string;
+  format_id?: string;
   ext?: AudioEXTEnum;
   protocol?: string;
   formatNote?: string;
@@ -102,7 +102,7 @@ export enum AudioEXTEnum {
 export interface Format {
   asr?: number;
   filesize: number;
-  formatID?: string;
+  format_id?: string;
   format_note: string;
   sourcePreference?: number;
   audioChannels?: number;
@@ -119,7 +119,7 @@ export interface Format {
   container?: Container;
   resolution?: string;
   audioEXT?: AudioEXTEnum;
-  videoEXT?: VideoEXTEnum;
+  video_ext?: VideoEXTEnum;
   format?: string;
   fps?: number;
   height?: number;
@@ -163,7 +163,7 @@ export interface Thumbnail {
 }
 
 export interface UploadDate {
-  date?: Date;
+  date: string;
   timezoneType?: number;
   timezone?: string;
 }

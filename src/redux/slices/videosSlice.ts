@@ -9,7 +9,17 @@ interface PlaylistState {
 
 const initialState: PlaylistState = {
   data: {
-    result: { formats: [], format: "", subtitles: { en: [] } },
+    result: {
+      formats: [],
+      format: "",
+      subtitles: { en: [] },
+      thumbnail: "",
+      description: "",
+      channel_id: "",
+      view_count: 0,
+      like_count: 0,
+      upload_date: { date: "" },
+    },
   },
   status: "idle",
 };

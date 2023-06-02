@@ -7,6 +7,7 @@ import {
   fetchAdditionalPlaylistDetails,
   fetchPlaylistDetails,
 } from "@/redux/slices/playlistDetailsSlice";
+import Head from "next/head";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -30,7 +31,16 @@ const Playlist = () => {
     }
   }, [isBottomReached]);
 
-  return <PlaylistHome />;
+  return (
+    <>
+      <Head>
+        <title>{data.meta.title}</title>
+        <meta property="og:title" content={data.meta.title} key="title" />
+        <meta name="description" content={data.meta.title} />
+      </Head>
+      <PlaylistHome />;
+    </>
+  );
 };
 
 export default Playlist;
