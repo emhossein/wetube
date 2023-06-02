@@ -5,7 +5,7 @@ import Player from "@/components/Player/Player";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchRelatedVideos } from "@/redux/slices/relatedVideosSlice";
 import { fetchVideo } from "@/redux/slices/videosSlice";
-import Head from "next/head";
+// import Head from "next/head"; // does not work
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -15,7 +15,7 @@ const Page = () => {
 
   const dispatch = useAppDispatch();
   const { data, status } = useAppSelector((state) => state.videoReducer);
-  const { data: related, status: relatedStatus } = useAppSelector(
+  const { data: related } = useAppSelector(
     (state) => state.relatedVideosReducer
   );
   const { showGuide } = useAppSelector((state) => state.guideStateReducer);
@@ -27,11 +27,11 @@ const Page = () => {
 
   return (
     <>
-      <Head>
+      <head>
         <title>{data.result.title}</title>
         <meta property="og:title" content={data.result.title} key="title" />
         <meta name="description" content={data.result.description} />
-      </Head>
+      </head>
       <div className={`w-full ${showGuide ? "" : "md:px-8"}`}>
         {status === "succeeded" && (
           <Player id={id} related={related} data={data} />

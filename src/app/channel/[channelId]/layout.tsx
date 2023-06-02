@@ -6,7 +6,7 @@ import ChannelTabs from "@/components/Channel/ChannelTabs";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchChannelDetails } from "@/redux/slices/channelDetailsSlice";
 import { tabChange } from "@/redux/slices/channelTabsStateSlice";
-import Head from "next/head";
+// import Head from "next/head"; // does not work
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -28,11 +28,11 @@ const channelLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Head>
+      <head>
         <title>{data.meta.title}</title>
         <meta property="og:title" content={data.meta.title} key="title" />
         <meta name="description" content={data.meta.description} />
-      </Head>
+      </head>
       <div className="w-full">
         {status === "succeeded" && (
           <>
