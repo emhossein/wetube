@@ -2,7 +2,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchChannelDetails } from "@/redux/slices/channelDetailsSlice";
 import { Welcome } from "@/types/videoTypes";
 import { Welcome as WelcomeRelated } from "@/types/relatedVideoTypes";
-import bitsToMegabytes from "@/utils/bitsToMegaBytes";
 import dateFormat from "@/utils/dateFormat";
 import Image from "next/image";
 import Link from "next/link";
@@ -65,14 +64,20 @@ const Player = ({ data, related, id }: iProps) => {
     <div className="grid w-full text-white lg:grid-cols-4">
       {mp4 && (
         <div className="relative col-span-3 w-full">
-          <video
-            src={mp4[0].url}
-            controls
-            className="aspect-video w-full hover:cursor-pointer"
-            poster={data.result.thumbnail}
-          >
-            Your browser does not support HTML5 video.
-          </video>
+          {mp4.length ? (
+            <video
+              src={mp4[0].url}
+              controls
+              className="w-full hover:cursor-pointer"
+              poster={data.result.thumbnail}
+            >
+              Your browser does not support HTML5 video.
+            </video>
+          ) : (
+            <h1 className="mx-auto aspect-video w-full text-2xl">
+              Sorry, this video does not have an unfiltered url.
+            </h1>
+          )}
           <div className="mt-3 px-3 md:px-0">
             <h2 className="text-xl font-semibold">{data.result.title}</h2>
             <div className="mt-3 w-full items-center justify-between md:flex">

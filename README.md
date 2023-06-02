@@ -12,6 +12,5 @@
 
 ## TODOs:
 
-- video listing for home feed
 - search and auto complete implementation
-- video and shorts page implementation
+- shorts page implementation
