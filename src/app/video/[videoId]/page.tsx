@@ -3,7 +3,9 @@
 import LoadingSpinner from "@/components/LoadingSpinner";
 import Player from "@/components/Player/Player";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { fetchChannelDetails } from "@/redux/slices/channelDetailsSlice";
 import { fetchRelatedVideos } from "@/redux/slices/relatedVideosSlice";
+import { fetchVideoComments } from "@/redux/slices/videoCommentsSlice";
 import { fetchVideo } from "@/redux/slices/videosSlice";
 // import Head from "next/head"; // does not work
 import { usePathname } from "next/navigation";
@@ -18,23 +20,28 @@ const Page = () => {
   const { data: related } = useAppSelector(
     (state) => state.relatedVideosReducer
   );
+  const { data: channel } = useAppSelector(
+    (state) => state.channelDetailsReducer
+  );
   const { showGuide } = useAppSelector((state) => state.guideStateReducer);
 
   useEffect(() => {
     dispatch(fetchVideo(id));
     dispatch(fetchRelatedVideos(id));
+    dispatch(fetchChannelDetails(data.result.channel_id));
+    dispatch(fetchVideoComments(id));
   }, []);
 
   return (
     <>
       <head>
-        <title>{data.result.title}</title>
-        <meta property="og:title" content={data.result.title} key="title" />
-        <meta name="description" content={data.result.description} />
+        <title>{data?.result?.title} - VisionTube</title>
+        <meta property="og:title" content={data?.result?.title} key="title" />
+        <meta name="description" content={data?.result?.description} />
       </head>
-      <div className={`w-full ${showGuide ? "" : "md:px-8"}`}>
+      <div className={`w-full overflow-x-hidden ${showGuide ? "" : "md:px-8"}`}>
         {status === "succeeded" && (
-          <Player id={id} related={related} data={data} />
+          <Player id={id} related={related} channel={channel} data={data} />
         )}
         {status === "loading" && <LoadingSpinner />}
       </div>

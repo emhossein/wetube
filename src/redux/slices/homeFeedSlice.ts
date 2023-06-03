@@ -36,7 +36,7 @@ export const fetchHomeFeed = createAsyncThunk(
 );
 
 export const fetchAdditionalHomeFeed = createAsyncThunk(
-  "channelShorts/fetchAdditionalHomeFeed",
+  "homeFeed/fetchAdditionalHomeFeed",
   async ({ token }: { token?: string }, { getState }) => {
     const currentState = getState() as RootState;
     const prevData = currentState.homeFeedReducer.data.data;

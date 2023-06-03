@@ -34,9 +34,9 @@ const Playlist = () => {
   return (
     <>
       <head>
-        <title>{data.meta.title}</title>
-        <meta property="og:title" content={data.meta.title} key="title" />
-        <meta name="description" content={data.meta.title} />
+        <title>{data?.meta?.title} - VisionTube</title>
+        <meta property="og:title" content={data?.meta?.title} key="title" />
+        <meta name="description" content={data?.meta?.title} />
       </head>
       <PlaylistHome />;
     </>

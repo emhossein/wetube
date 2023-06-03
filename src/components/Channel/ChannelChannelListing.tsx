@@ -1,47 +1,49 @@
-import { WelcomeDatum } from "@/types/channelDetailsTypes";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { fetchChannelFeaturedChannels } from "@/redux/slices/channelFeaturedChannelsSlice";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
-const ChannelChannelListing = ({ channels }: { channels: WelcomeDatum[] }) => {
-  console.log(channels);
+const ChannelChannelListing = ({ id }: { id: string }) => {
+  const dispatch = useAppDispatch();
+  const { data: channels } = useAppSelector(
+    (state) => state.channelFeaturedChannelsReducer
+  );
+
+  useEffect(() => {
+    dispatch(fetchChannelFeaturedChannels(id));
+  }, []);
 
   return (
     <>
-      {!channels.length && (
+      {!channels?.data?.length && (
         <p className="my-3">No other channels by this creator.</p>
       )}
-      <div className="mx-auto mt-6 w-80% text-white">
-        {channels.map((channel) => {
+      <div className="mb-6 mt-6 grid w-80% grid-cols-2 gap-y-3 text-white md:grid-cols-4 lg:grid-cols-6">
+        {channels?.data?.map((channel) => {
           return (
-            <div key={channel.title}>
-              <p>{channel.title}</p>
-              <div className="mt-6 flex flex-col items-center space-y-5 md:flex-row md:space-y-0">
-                {channel.data.map((dt) => {
-                  return (
-                    <Link
-                      key={dt.channelId}
-                      href={`/channel/${dt.channelId}`}
-                      className="flex w-48 flex-col items-center justify-between"
-                    >
-                      <div className="relative mb-1 min-h-[90px] min-w-[90px] overflow-hidden rounded-full md:h-24 md:w-24">
-                        <Image
-                          src={`https:${dt.thumbnail?.[1].url}`}
-                          alt={channel.title}
-                          fill
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="mb-2 text-center text-lg">{dt.title}</p>
-                        <p className="text-center text-xs text-gray-light">
-                          {dt.subscriberCount} subscribers
-                        </p>
-                      </div>
-                    </Link>
-                  );
-                })}
+            <Link
+              href={`/channel/${channel.channelId}`}
+              className="w-full"
+              key={channel.channelId}
+            >
+              <div className="center flex-col">
+                <div className="h-[90px] w-[90px] rounded-full">
+                  <Image
+                    src={`https:${
+                      channel.thumbnail[channel.thumbnail.length - 1].url
+                    }`}
+                    alt={channel.title}
+                    fill
+                    className="position-unset | rounded-full"
+                  />
+                </div>
+                <p className="my-1 text-center text-sm">{channel.title}</p>
+                <p className="text-center text-xs text-gray-light">
+                  {channel.subscriberCount}
+                </p>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

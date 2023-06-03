@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { Welcome } from "@/types/relatedVideoTypes";
+import { Welcome } from "@/types/videoCommentsTypes";
 
 interface RelatedVideosState {
   data: Welcome;
@@ -9,16 +9,14 @@ interface RelatedVideosState {
 }
 
 const initialState: RelatedVideosState = {
-  data: {
-    data: [],
-  },
+  data: { data: [] },
   status: "idle",
 };
 
-export const fetchRelatedVideos = createAsyncThunk(
-  "relatedVideos/fetchRelatedVideos",
+export const fetchVideoComments = createAsyncThunk(
+  "videoComments/fetchVideoComments",
   async (id: string) => {
-    const response = await axios.get(`https://yt-api.p.rapidapi.com/related`, {
+    const response = await axios.get(`https://yt-api.p.rapidapi.com/comments`, {
       headers: {
         "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
         "X-RapidAPI-Key": process.env.RAPIDKEY1,
@@ -28,19 +26,19 @@ export const fetchRelatedVideos = createAsyncThunk(
         id,
       },
     });
-    console.log("relatedVideos fetched");
+    console.log("videoComments fetched");
 
     return response.data;
   }
 );
 
-export const fetchAdditionalRelatedVideos = createAsyncThunk(
-  "relatedVideos/fetchAdditionalRelatedVideos",
+export const fetchAdditionalVideoComments = createAsyncThunk(
+  "videoComments/fetchAdditionalVideoComments",
   async ({ id, token }: { id: string; token?: string }, { getState }) => {
     const currentState = getState() as RootState;
-    const prevData = currentState.relatedVideosReducer.data.data;
+    const prevData = currentState.videoCommentsReducer.data.data;
 
-    const response = await axios.get(`https://yt-api.p.rapidapi.com/related`, {
+    const response = await axios.get(`https://yt-api.p.rapidapi.com/comments`, {
       headers: {
         "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
         "X-RapidAPI-Key": process.env.RAPIDKEY1,
@@ -56,10 +54,10 @@ export const fetchAdditionalRelatedVideos = createAsyncThunk(
     const newContinuation = response.data.continuation;
     const combinedData = [...prevData, ...newData];
 
-    console.log("relatedVideos updated");
+    console.log("videoComments updated");
 
     return {
-      ...currentState.relatedVideosReducer.data,
+      ...currentState.videoCommentsReducer.data,
       continuation: newContinuation,
       data: combinedData,
     };
@@ -67,25 +65,25 @@ export const fetchAdditionalRelatedVideos = createAsyncThunk(
 );
 
 const relatedVideosSlice = createSlice({
-  name: "relatedVideos",
+  name: "videoComments",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRelatedVideos.pending, (state) => {
+      .addCase(fetchVideoComments.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchRelatedVideos.fulfilled, (state, action) => {
+      .addCase(fetchVideoComments.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
       })
-      .addCase(fetchRelatedVideos.rejected, (state) => {
+      .addCase(fetchVideoComments.rejected, (state) => {
         state.status = "failed";
       })
-      .addCase(fetchAdditionalRelatedVideos.pending, (state) => {
+      .addCase(fetchAdditionalVideoComments.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchAdditionalRelatedVideos.fulfilled, (state, action) => {
+      .addCase(fetchAdditionalVideoComments.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
       });

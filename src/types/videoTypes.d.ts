@@ -4,7 +4,7 @@ export interface Welcome {
 }
 
 export interface Result {
-  id?: string;
+  id: string;
   title?: string;
   formats: Format[];
   thumbnails?: Thumbnail[];

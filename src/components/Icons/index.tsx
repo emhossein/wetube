@@ -10,6 +10,7 @@ import CommentIcon from "./CommentIcon";
 import MoreIcon from "./MoreIcon";
 import ShareIcon from "./ShareIcon";
 import ShortsIcon from "./ShortsIcon";
+import CloseIcon from "./CloseIcon";
 
 export {
   HomeIcon,
@@ -24,4 +25,5 @@ export {
   MoreIcon,
   ShareIcon,
   ShortsIcon,
+  CloseIcon,
 };

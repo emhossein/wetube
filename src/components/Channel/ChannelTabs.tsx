@@ -10,7 +10,7 @@ const ChannelTabs = ({ tabs, id }: { tabs: string[]; id: string }) => {
   return (
     <div className="no-scrollbar | overflow-y-scroll text-white">
       <div className="flex w-4/5 items-center space-x-3 lg:mx-auto">
-        {tabs.map((tab) => {
+        {tabs?.map((tab) => {
           return (
             <Link
               key={tab}

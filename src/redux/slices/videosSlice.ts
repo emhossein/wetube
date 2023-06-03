@@ -10,6 +10,7 @@ interface PlaylistState {
 const initialState: PlaylistState = {
   data: {
     result: {
+      id: "",
       formats: [],
       format: "",
       subtitles: { en: [] },

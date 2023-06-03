@@ -38,7 +38,7 @@ const Page = () => {
       ) : tab === "Live" ? (
         <ChannelLive id={id} />
       ) : tab === "Channels" ? (
-        <ChannelChannelListing channels={channels} />
+        <ChannelChannelListing id={id} />
       ) : tab === "Playlists" ? (
         <ChannelPlaylists id={id} />
       ) : tab === "Community" ? (

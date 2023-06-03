@@ -20,7 +20,7 @@ const channelLayout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     dispatch(fetchChannelDetails(id));
-
+    // for when the user leave channel from a tab other than the home tab and comes back so it will be home tab again
     if (pathname.split("/").length === 3) {
       dispatch(tabChange("Home"));
     }
@@ -29,15 +29,15 @@ const channelLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <head>
-        <title>{data.meta.title}</title>
-        <meta property="og:title" content={data.meta.title} key="title" />
-        <meta name="description" content={data.meta.description} />
+        <title>{data?.meta?.title} - VisionTube</title>
+        <meta property="og:title" content={data?.meta?.title} key="title" />
+        <meta name="description" content={data?.meta?.description} />
       </head>
       <div className="w-full">
         {status === "succeeded" && (
           <>
             <ChannelHero data={data} />
-            <ChannelTabs tabs={data.meta.tabs} id={id} />
+            <ChannelTabs tabs={data?.meta?.tabs} id={id} />
             {children}
           </>
         )}
