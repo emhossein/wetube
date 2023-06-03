@@ -4,9 +4,8 @@ import ChannelVideoListing from "./ChannelVideoListing";
 import ChannelChannelListing from "./ChannelChannelListing";
 import ChannelShortsListing from "./ChannelShortsListing";
 
-const ChannelHome = ({ data }: { data: WelcomeDatum[] }) => {
+const ChannelHome = ({ data, id }: { data: WelcomeDatum[]; id: string }) => {
   const videos = data?.filter((dt) => dt.type === "video_listing");
-  const channels = data?.filter((dt) => dt.type === "channel_listing");
   const shorts = data?.filter((dt) => dt.type === "shorts_listing");
 
   const type = data?.map((dt) => dt?.type);
@@ -19,9 +18,7 @@ const ChannelHome = ({ data }: { data: WelcomeDatum[] }) => {
       {type?.includes("shorts_listing") && (
         <ChannelShortsListing shorts={shorts as DatumDatum[]} />
       )}
-      {type?.includes("channel_listing") && (
-        <ChannelChannelListing channels={channels} />
-      )}
+      {type?.includes("channel_listing") && <ChannelChannelListing id={id} />}
     </div>
   );
 };

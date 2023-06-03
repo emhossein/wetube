@@ -64,14 +64,14 @@ const VideoComments = () => {
           <div className="h-7 w-7 shrink-0">
             <Image
               fill
-              src={firstComment.authorThumbnail[0].url}
-              alt={firstComment.authorChannelId}
+              src={firstComment?.authorThumbnail[0].url}
+              alt={firstComment?.authorChannelId}
               className="position-unset | mr-4 rounded-full "
             />
           </div>
 
           <div className="h-full">
-            <p className="text-sm md:text-base">{firstComment.textDisplay}</p>
+            <p className="text-sm md:text-base">{firstComment?.textDisplay}</p>
           </div>
         </div>
       </div>
