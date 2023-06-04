@@ -26,7 +26,8 @@
     "react-tuby": "^0.1.24",
     "react-visibility-sensor": "^5.1.1",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "use-debounced-search": "^1.0.8"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.59.7",

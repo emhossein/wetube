@@ -60,7 +60,7 @@ const HomeFeedShortsListing = ({
       </button>
       <div className="my-4 flex items-center space-x-2">
         {dtType === "shorts" && <ShortsIcon />}
-        <h1 className="text-lg">{shorts[0].title}</h1>
+        <h1 className="text-lg">{shorts[0]?.title}</h1>
       </div>
       {shorts.map((shorts, i) => {
         return (

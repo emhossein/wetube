@@ -59,6 +59,9 @@ dependencies:
   typescript:
     specifier: 5.0.4
     version: 5.0.4
+  use-debounced-search:
+    specifier: ^1.0.8
+    version: 1.0.8
 
 devDependencies:
   '@typescript-eslint/eslint-plugin':
@@ -3359,6 +3362,13 @@ packages:
     dependencies:
       punycode: 1.3.2
       querystring: 0.2.0
+    dev: false
+
+  /use-debounced-search@1.0.8:
+    resolution: {integrity: sha512-q1ujglKAZAhwrfPp4ylAGoqQjW2cWw1UshPdgVcxd3iSiK6d5A/KvR002vAdYamQUIxBIxJxeU1CwmNE39gZCw==}
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /use-sync-external-store@1.2.0(react@18.2.0):

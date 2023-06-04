@@ -13,7 +13,7 @@ const Drawer = () => {
       id="navigation-guide"
       className={`${
         showGuide ? "block" : "hidden"
-      } absolute z-50 h-full w-full max-w-[240px] bg-black p-3 text-white md:static`}
+      } absolute z-40 h-full w-full max-w-[240px] bg-black p-3 text-white md:static`}
     >
       <div className="sticky top-14">
         <DrawerItem text="home" icon={HomeIcon} />

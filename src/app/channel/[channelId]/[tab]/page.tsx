@@ -5,6 +5,7 @@ import ChannelChannelListing from "@/components/Channel/ChannelChannelListing";
 import ChannelCommunityPosts from "@/components/Channel/ChannelCommunityPosts";
 import ChannelLive from "@/components/Channel/ChannelLive";
 import ChannelPlaylists from "@/components/Channel/ChannelPlaylists";
+import ChannelSearch from "@/components/Channel/ChannelSearch";
 import ChannelShorts from "@/components/Channel/ChannelShorts";
 import ChannelVideos from "@/components/Channel/ChannelVideos";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -43,6 +44,8 @@ const Page = () => {
         <ChannelPlaylists id={id} />
       ) : tab === "Community" ? (
         <ChannelCommunityPosts id={id} />
+      ) : tab === "Search" ? (
+        <ChannelSearch id={id} />
       ) : (
         <p>Unfortunately api does not provide data for this tab :&#40;</p>
       )}

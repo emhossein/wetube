@@ -14,6 +14,8 @@ import videoReducer from "./slices/videosSlice";
 import relatedVideosReducer from "./slices/relatedVideosSlice";
 import videoCommentsReducer from "./slices/videoCommentsSlice";
 import channelFeaturedChannelsReducer from "./slices/channelFeaturedChannelsSlice";
+import searchReducer from "./slices/searchSlice";
+import channelSearchReducer from "./slices/channelSearch";
 
 export const store = configureStore({
   reducer: {
@@ -31,6 +33,8 @@ export const store = configureStore({
     relatedVideosReducer,
     videoCommentsReducer,
     channelFeaturedChannelsReducer,
+    searchReducer,
+    channelSearchReducer,
   },
 
   devTools: process.env.NODE_ENV !== "production",

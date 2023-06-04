@@ -36,12 +36,8 @@ export default function Home() {
         showGuide ? "md:pr-3" : "md:px-10"
       }`}
     >
-      {shorts && status === "succeeded" && (
-        <HomeFeedShortsListing dtType="shorts" shorts={shorts} />
-      )}
-      {videos && status === "succeeded" && (
-        <HomeFeedShortsListing shorts={videos} />
-      )}
+      {shorts && <HomeFeedShortsListing dtType="shorts" shorts={shorts} />}
+      {videos && <HomeFeedShortsListing shorts={videos} />}
       <VideoContainer data={data as any} />
       {status === "loading" && <LoadingSpinner />}
     </main>
