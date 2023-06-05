@@ -20,6 +20,7 @@ const initialState: PlaylistState = {
       view_count: 0,
       like_count: 0,
       upload_date: { date: "" },
+      channel_follower_count: 0,
     },
   },
   status: "idle",
