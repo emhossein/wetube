@@ -27,7 +27,7 @@ export interface Result {
   subtitles: Subtitles;
   like_count: number;
   channel?: string;
-  channelFollowerCount?: number;
+  channel_follower_count: number;
   upload_date: UploadDate;
   availability?: string;
   webpageURLBasename?: string;

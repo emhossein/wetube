@@ -20,14 +20,16 @@ const VideoDetails = ({ data, channel }: iProps) => {
   };
 
   return (
-    <div className="mt-3 px-3 md:px-0">
+    <div className="mt-3 w-screen px-3 md:w-full md:px-0">
       <h2 className="text-xl font-semibold">{data.result.title}</h2>
       <div className="mt-3 w-full items-center justify-between md:flex">
         <div className="mb-2 flex md:mb-0">
           <Link href={`/channel/${channel?.meta?.channelId}`}>
             <div className="mr-3 h-10 w-10 overflow-hidden rounded-full">
               <Image
-                src={channel?.meta?.avatar?.[0]?.url}
+                src={
+                  channel?.meta?.avatar?.[channel?.meta?.avatar.length - 1]?.url
+                }
                 alt={channel?.meta?.title}
                 fill
                 className="position-unset"
@@ -43,7 +45,7 @@ const VideoDetails = ({ data, channel }: iProps) => {
               {channel?.meta?.isVerified && <VerifiedIcon />}
             </Link>
             <p className="text-xs text-gray-light">
-              {channel?.meta?.subscriberCountText} subscribers
+              {formatNumber(data.result?.channel_follower_count)} subscribers
             </p>
           </div>
         </div>

@@ -26,3 +26,4 @@
 ## TODOs:
 
 - shorts page implementation
+- playlist videos image

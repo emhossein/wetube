@@ -6,8 +6,6 @@ import Image from "next/image";
 const PlaylistCard = () => {
   const { data } = useAppSelector((state) => state.playlistDetailsReducer);
 
-  console.log(data);
-
   return (
     <div className="w-full overflow-hidden md:sticky md:top-14 md:h-[90vh] md:w-1/3 md:rounded-2xl">
       <div className="relative mb-6 h-full w-full overflow-hidden bg-gradient-to-b from-transparent from-60% to-black to-100% p-6 pb-0 md:rounded-2xl">
@@ -23,7 +21,7 @@ const PlaylistCard = () => {
           <Image
             fill
             alt={data.meta.title}
-            src={data.meta.thumbnail?.[data.meta.thumbnail.length - 1]?.url}
+            src={data.meta.thumbnail?.[0]?.url}
             className="position-unset"
           />
         </div>

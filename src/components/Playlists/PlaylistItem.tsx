@@ -11,7 +11,7 @@ const PlaylistItem = ({ dt }: { dt: Datum }) => {
     >
       <p className="self-center px-3">{dt.index}</p>
       <div className="relative mr-2 rounded-lg">
-        <div className="h-full w-full rounded-lg">
+        <div className="aspect-video h-full rounded-lg">
           <Image
             fill
             alt={dt.title}
@@ -24,7 +24,7 @@ const PlaylistItem = ({ dt }: { dt: Datum }) => {
         </p>
       </div>
       <div>
-        <h3 className="mb-2 text-base">{dt.title}</h3>
+        <h3 className="mb-2 line-clamp-2 text-sm md:text-base">{dt.title}</h3>
         <p className="text-xs text-gray-light">
           {dt.channelTitle} • {dt.videoInfo}
         </p>
