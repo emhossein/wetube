@@ -9,6 +9,7 @@ interface PlaylistState {
 
 const initialState: PlaylistState = {
   data: {
+    status: 0,
     result: {
       id: "",
       formats: [],

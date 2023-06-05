@@ -2,6 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { Welcome } from "@/types/searchTypes";
+import randomApiKey from "@/utils/randomApiKey";
 
 interface SearchState {
   data: Welcome;
@@ -20,10 +21,12 @@ const initialState: SearchState = {
 export const fetchSearchResult = createAsyncThunk(
   "search/fetchSearchResult",
   async (query: string) => {
+    const rapidAPIKey = randomApiKey();
+
     const response = await axios.get(`https://yt-api.p.rapidapi.com/search`, {
       headers: {
         "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-        "X-RapidAPI-Key": process.env.RAPIDKEY1,
+        "X-RapidAPI-Key": rapidAPIKey,
       },
       params: {
         query,
@@ -38,13 +41,15 @@ export const fetchSearchResult = createAsyncThunk(
 export const fetchAdditionalSearchResult = createAsyncThunk(
   "search/fetchAdditionalSearchResult",
   async ({ token, query }: { token: string; query: string }, { getState }) => {
+    const rapidAPIKey = randomApiKey();
+
     const currentState = getState() as RootState;
     const prevData = currentState.searchReducer.data.data;
 
     const response = await axios.get(`https://yt-api.p.rapidapi.com/search`, {
       headers: {
         "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-        "X-RapidAPI-Key": process.env.RAPIDKEY1,
+        "X-RapidAPI-Key": rapidAPIKey,
       },
       params: {
         token,

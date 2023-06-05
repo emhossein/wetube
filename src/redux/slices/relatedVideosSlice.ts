@@ -2,6 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { Welcome } from "@/types/relatedVideoTypes";
+import randomApiKey from "@/utils/randomApiKey";
 
 interface RelatedVideosState {
   data: Welcome;
@@ -18,10 +19,12 @@ const initialState: RelatedVideosState = {
 export const fetchRelatedVideos = createAsyncThunk(
   "relatedVideos/fetchRelatedVideos",
   async (id: string) => {
+    const rapidAPIKey = randomApiKey();
+
     const response = await axios.get(`https://yt-api.p.rapidapi.com/related`, {
       headers: {
         "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-        "X-RapidAPI-Key": process.env.RAPIDKEY1,
+        "X-RapidAPI-Key": rapidAPIKey,
       },
       params: {
         lang: "en",
@@ -37,13 +40,15 @@ export const fetchRelatedVideos = createAsyncThunk(
 export const fetchAdditionalRelatedVideos = createAsyncThunk(
   "relatedVideos/fetchAdditionalRelatedVideos",
   async ({ id, token }: { id: string; token?: string }, { getState }) => {
+    const rapidAPIKey = randomApiKey();
+
     const currentState = getState() as RootState;
     const prevData = currentState.relatedVideosReducer.data.data;
 
     const response = await axios.get(`https://yt-api.p.rapidapi.com/related`, {
       headers: {
         "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-        "X-RapidAPI-Key": process.env.RAPIDKEY1,
+        "X-RapidAPI-Key": rapidAPIKey,
       },
       params: {
         id,

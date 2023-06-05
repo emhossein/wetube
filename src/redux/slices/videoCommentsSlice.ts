@@ -2,6 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { Welcome } from "@/types/videoCommentsTypes";
+import randomApiKey from "@/utils/randomApiKey";
 
 interface RelatedVideosState {
   data: Welcome;
@@ -16,10 +17,12 @@ const initialState: RelatedVideosState = {
 export const fetchVideoComments = createAsyncThunk(
   "videoComments/fetchVideoComments",
   async (id: string) => {
+    const rapidAPIKey = randomApiKey();
+
     const response = await axios.get(`https://yt-api.p.rapidapi.com/comments`, {
       headers: {
         "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-        "X-RapidAPI-Key": process.env.RAPIDKEY1,
+        "X-RapidAPI-Key": rapidAPIKey,
       },
       params: {
         lang: "en",
@@ -35,13 +38,15 @@ export const fetchVideoComments = createAsyncThunk(
 export const fetchAdditionalVideoComments = createAsyncThunk(
   "videoComments/fetchAdditionalVideoComments",
   async ({ id, token }: { id: string; token?: string }, { getState }) => {
+    const rapidAPIKey = randomApiKey();
+
     const currentState = getState() as RootState;
     const prevData = currentState.videoCommentsReducer.data.data;
 
     const response = await axios.get(`https://yt-api.p.rapidapi.com/comments`, {
       headers: {
         "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-        "X-RapidAPI-Key": process.env.RAPIDKEY1,
+        "X-RapidAPI-Key": rapidAPIKey,
       },
       params: {
         id,

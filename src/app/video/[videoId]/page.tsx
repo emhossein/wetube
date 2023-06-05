@@ -40,10 +40,17 @@ const Page = () => {
         <meta name="description" content={data?.result?.description} />
       </head>
       <div className={`w-full overflow-x-hidden ${showGuide ? "" : "md:px-8"}`}>
-        {status === "succeeded" && (
-          <Player id={id} related={related} channel={channel} data={data} />
-        )}
-        {status === "loading" && <LoadingSpinner />}
+        <>
+          {data.status === 500 && (
+            <h1 className="text-2xl text-white">
+              Sorry, Live videos are not provided by the Api.
+            </h1>
+          )}
+          {status === "succeeded" && data.status === 200 && (
+            <Player id={id} related={related} channel={channel} data={data} />
+          )}
+          {status === "loading" && <LoadingSpinner />}
+        </>
       </div>
     </>
   );

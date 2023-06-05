@@ -2,6 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { Datum, Welcome } from "@/types/channelCommunityPostsTypes";
+import randomApiKey from "@/utils/randomApiKey";
 
 interface ChannelCommunityState {
   data: Welcome;
@@ -38,12 +39,14 @@ const initialState: ChannelCommunityState = {
 export const fetchChannelCommunity = createAsyncThunk(
   "channelCommunity/fetchChannelCommunity",
   async (id: string) => {
+    const rapidAPIKey = randomApiKey();
+
     const response = await axios.get(
       `https://yt-api.p.rapidapi.com/channel/community`,
       {
         headers: {
           "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-          "X-RapidAPI-Key": process.env.RAPIDKEY1,
+          "X-RapidAPI-Key": rapidAPIKey,
         },
         params: {
           id,
@@ -59,6 +62,8 @@ export const fetchChannelCommunity = createAsyncThunk(
 export const fetchAdditionalChannelCommunity = createAsyncThunk(
   "channelCommunity/fetchAdditionalChannelVideos",
   async ({ id, token }: { id: string; token?: string }, { getState }) => {
+    const rapidAPIKey = randomApiKey();
+
     const currentState = getState() as RootState;
     const prevData = currentState.channelCommunityReducer.data.data;
 
@@ -67,7 +72,7 @@ export const fetchAdditionalChannelCommunity = createAsyncThunk(
       {
         headers: {
           "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-          "X-RapidAPI-Key": process.env.RAPIDKEY1,
+          "X-RapidAPI-Key": rapidAPIKey,
         },
         params: {
           id,

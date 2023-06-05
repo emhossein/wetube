@@ -1,5 +1,5 @@
 export interface Welcome {
-  status?: number;
+  status: number;
   result: Result;
 }
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Welcome } from "@/types/channelFeaturedChannelsTypes";
+import randomApiKey from "@/utils/randomApiKey";
 
 interface ChannelLiveStreamsState {
   data: Welcome;
@@ -15,12 +16,14 @@ const initialState: ChannelLiveStreamsState = {
 export const fetchChannelFeaturedChannels = createAsyncThunk(
   "channelFeaturedChannels/fetchChannelFeaturedChannels",
   async (id: string) => {
+    const rapidAPIKey = randomApiKey();
+
     const response = await axios.get(
       `https://yt-api.p.rapidapi.com/channel/channels`,
       {
         headers: {
           "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-          "X-RapidAPI-Key": process.env.RAPIDKEY1,
+          "X-RapidAPI-Key": rapidAPIKey,
         },
         params: {
           id,

@@ -2,6 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { Datum, Welcome } from "@/types/channelVideosTypes";
+import randomApiKey from "@/utils/randomApiKey";
 
 interface ChannelShortsState {
   data: Welcome;
@@ -39,12 +40,14 @@ const initialState: ChannelShortsState = {
 export const fetchChannelShorts = createAsyncThunk(
   "channelShorts/fetchChannelShorts",
   async (id: string) => {
+    const rapidAPIKey = randomApiKey();
+
     const response = await axios.get(
       `https://yt-api.p.rapidapi.com/channel/shorts`,
       {
         headers: {
           "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-          "X-RapidAPI-Key": process.env.RAPIDKEY1,
+          "X-RapidAPI-Key": rapidAPIKey,
         },
         params: {
           id,
@@ -60,6 +63,8 @@ export const fetchChannelShorts = createAsyncThunk(
 export const fetchAdditionalChannelShorts = createAsyncThunk(
   "channelShorts/fetchAdditionalChannelShorts",
   async ({ id, token }: { id: string; token?: string }, { getState }) => {
+    const rapidAPIKey = randomApiKey();
+
     const currentState = getState() as RootState;
     const prevData = currentState.channelShortsReducer.data.data;
 
@@ -68,7 +73,7 @@ export const fetchAdditionalChannelShorts = createAsyncThunk(
       {
         headers: {
           "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
-          "X-RapidAPI-Key": process.env.RAPIDKEY1,
+          "X-RapidAPI-Key": rapidAPIKey,
         },
         params: {
           id,
@@ -105,7 +110,7 @@ const channelShorts = createSlice({
       .addCase(fetchChannelShorts.rejected, (state) => {
         state.status = "failed";
       })
-      .addCase(fetchAdditionalChannelShorts.pending, (state, action) => {
+      .addCase(fetchAdditionalChannelShorts.pending, (state) => {
         state.status = "loading";
       })
       .addCase(fetchAdditionalChannelShorts.fulfilled, (state, action) => {

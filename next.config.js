@@ -16,6 +16,9 @@ const nextConfig = {
   },
   env: {
     RAPIDKEY1: process.env.RAPIDKEY1,
+    RAPIDKEY2: process.env.RAPIDKEY2,
+    RAPIDKEY3: process.env.RAPIDKEY3,
+    RAPIDKEY4: process.env.RAPIDKEY4,
     ONEKEY: process.env.ONEKEY,
   },
 };
