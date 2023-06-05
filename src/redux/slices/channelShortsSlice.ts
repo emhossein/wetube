@@ -51,6 +51,7 @@ export const fetchChannelShorts = createAsyncThunk(
         },
         params: {
           id,
+          lang: "en",
         },
       }
     );
@@ -78,6 +79,7 @@ export const fetchAdditionalChannelShorts = createAsyncThunk(
         params: {
           id,
           token,
+          lang: "en",
         },
       }
     );

@@ -50,6 +50,7 @@ export const fetchChannelCommunity = createAsyncThunk(
         },
         params: {
           id,
+          lang: "en",
         },
       }
     );
@@ -77,6 +78,7 @@ export const fetchAdditionalChannelCommunity = createAsyncThunk(
         params: {
           id,
           token,
+          lang: "en",
         },
       }
     );

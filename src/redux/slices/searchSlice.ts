@@ -30,6 +30,7 @@ export const fetchSearchResult = createAsyncThunk(
       },
       params: {
         query,
+        lang: "en",
       },
     });
     console.log("SearchResult fetched");
@@ -54,6 +55,7 @@ export const fetchAdditionalSearchResult = createAsyncThunk(
       params: {
         token,
         query,
+        lang: "en",
       },
     });
 

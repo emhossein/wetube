@@ -50,6 +50,7 @@ export const fetchChannelDetails = createAsyncThunk(
         },
         params: {
           id,
+          lang: "en",
         },
       }
     );

@@ -51,6 +51,7 @@ export const fetchChannelLiveStreams = createAsyncThunk(
         },
         params: {
           id,
+          lang: "en",
         },
       }
     );

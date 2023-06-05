@@ -31,6 +31,7 @@ export const fetchChannelSearchResults = createAsyncThunk(
         params: {
           id,
           query,
+          lang: "en",
         },
       }
     );
@@ -62,6 +63,7 @@ export const fetchAdditionalChannelSearch = createAsyncThunk(
           id,
           token,
           query,
+          lang: "en",
         },
       }
     );

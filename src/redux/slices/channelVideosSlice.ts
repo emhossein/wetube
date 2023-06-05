@@ -51,6 +51,7 @@ export const fetchChannelVideos = createAsyncThunk(
         },
         params: {
           id,
+          lang: "en",
         },
       }
     );
@@ -78,6 +79,7 @@ export const fetchAdditionalChannelVideos = createAsyncThunk(
         params: {
           id,
           token,
+          lang: "en",
         },
       }
     );

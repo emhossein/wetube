@@ -50,6 +50,7 @@ export const fetchChannelPlaylists = createAsyncThunk(
         },
         params: {
           id,
+          lang: "en",
         },
       }
     );

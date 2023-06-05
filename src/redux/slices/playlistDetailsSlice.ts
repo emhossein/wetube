@@ -46,6 +46,7 @@ export const fetchPlaylistDetails = createAsyncThunk(
       },
       params: {
         id,
+        lang: "en",
       },
     });
     console.log("playlistDetails fetched");
@@ -70,6 +71,7 @@ export const fetchAdditionalPlaylistDetails = createAsyncThunk(
       params: {
         id,
         token,
+        lang: "en",
       },
     });
 

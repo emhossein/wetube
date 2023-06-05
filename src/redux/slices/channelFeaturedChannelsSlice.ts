@@ -27,6 +27,7 @@ export const fetchChannelFeaturedChannels = createAsyncThunk(
         },
         params: {
           id,
+          lang: "en",
         },
       }
     );
