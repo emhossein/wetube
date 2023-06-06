@@ -63,7 +63,7 @@ const SearchShorts = ({ dt }: { dt: WelcomeDatum }) => {
               offset={{ right: 1 }}
             >
               <Link
-                href={`/shorts/${short.videoId}`}
+                href={`/shorts?sh=${short.videoId}`}
                 key={short.videoId}
                 className="w-1/4 flex-none md:w-1/6 lg:w-1/12"
               >

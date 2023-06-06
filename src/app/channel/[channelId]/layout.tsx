@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import ChannelHero from "@/components/Channel/ChannelHero";
@@ -6,11 +5,11 @@ import ChannelTabs from "@/components/Channel/ChannelTabs";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchChannelDetails } from "@/redux/slices/channelDetailsSlice";
 import { tabChange } from "@/redux/slices/channelTabsStateSlice";
-// import Head from "next/head"; // does not work
+
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
-const channelLayout = ({ children }: { children: React.ReactNode }) => {
+const ChannelLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   const id = pathname.split("/")[2];
   const dispatch = useAppDispatch();
@@ -28,11 +27,6 @@ const channelLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <head>
-        <title>{data?.meta?.title} - VisionTube</title>
-        <meta property="og:title" content={data?.meta?.title} key="title" />
-        <meta name="description" content={data?.meta?.description} />
-      </head>
       <div className="w-full">
         {status === "succeeded" && (
           <>
@@ -46,4 +40,4 @@ const channelLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default channelLayout;
+export default ChannelLayout;

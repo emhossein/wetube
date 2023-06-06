@@ -1,11 +1,13 @@
+import { LikeIcon, MoreIcon, ShareIcon, VerifiedIcon } from "../Icons";
+import React, { useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { LikeIcon, MoreIcon, ShareIcon, VerifiedIcon } from "../Icons";
-import formatNumber from "@/utils/numberFormat";
-import dateFormat from "@/utils/dateFormat";
 import { Welcome } from "@/types/videoTypes";
 import { Welcome as WelcomeChannel } from "@/types/channelDetailsTypes";
+import dateFormat from "@/utils/dateFormat";
+import extractUrlAndHashtags from "@/utils/extractUrlAndHashtags";
+import formatNumber from "@/utils/numberFormat";
 
 type iProps = {
   data: Welcome;
@@ -87,11 +89,20 @@ const VideoDetails = ({ data, channel }: iProps) => {
                 <p>{formatNumber(data.result.view_count)} views</p>
                 <p>{dateFormat(data.result.upload_date?.date)}</p>
               </div>
-              {data.result.tags?.slice(0, 3).map((tag) => (
-                <p key={tag}>#{tag.replace(" ", "-")}</p>
+            </div>
+            <p
+              className="whitespace-pre-line"
+              dangerouslySetInnerHTML={{
+                __html: extractUrlAndHashtags(data.result.description),
+              }}
+            />
+            <div className="flex flex-col text-blue-400">
+              {data.result.tags?.map((tag) => (
+                <Link href={`/hashtag/${tag.replaceAll(" ", "-")}`} key={tag}>
+                  #{tag.replaceAll(" ", "-")}
+                </Link>
               ))}
             </div>
-            <p className="whitespace-pre-line">{data.result.description}</p>
           </div>
         </div>
         <button className="p-3" onClick={handleShowMore}>

@@ -1,3 +1,7 @@
+### v.0.0.7
+
+- Resolve url functionality and preparing shorts page
+
 ### v.0.0.6
 
 - implementation of search functionality for header and channels.

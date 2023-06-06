@@ -40,7 +40,7 @@ const ChannelChannelListing = ({ id }: { id: string }) => {
                 </div>
                 <p className="my-1 text-center text-sm">{channel.title}</p>
                 <p className="text-center text-xs text-gray-light">
-                  {channel.subscriberCount}
+                  {channel.subscriberCount} subscribers
                 </p>
               </div>
             </Link>

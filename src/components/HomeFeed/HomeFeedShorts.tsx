@@ -19,7 +19,7 @@ const HomeFeedShorts = ({
 
   return (
     <Link
-      href={`/${dtType === "shorts" ? "shorts" : "video"}/${short.videoId}`}
+      href={`/${dtType === "shorts" ? "shorts?sh=" : "video/"}${short.videoId}`}
       className={className}
     >
       <div className="relative w-full object-cover md:rounded-lg">

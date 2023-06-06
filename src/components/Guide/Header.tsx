@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { CloseIcon, SearchIcon, YoutubeIcon } from "../Icons";
@@ -58,6 +60,7 @@ const Navbar = () => {
     router.push(`/search/${searched}`);
     clearSearch();
     clearSearched();
+    setShowSearchBar(false);
   };
 
   return (

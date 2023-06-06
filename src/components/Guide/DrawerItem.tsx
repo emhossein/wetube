@@ -19,7 +19,7 @@ const DrawerItems: React.FC<Props> = ({ text, icon: Icon }) => {
   return (
     <Link
       id={`nav-item-${text}`}
-      href={`/${text.toLowerCase()}`}
+      href={`/${text.toLowerCase().replaceAll(" ", "-")}`}
       onClick={handlePageStateChange}
       className={`flex items-center ${
         text === page && "bg-gray-350"

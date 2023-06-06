@@ -7,7 +7,7 @@ import { fetchChannelDetails } from "@/redux/slices/channelDetailsSlice";
 import { fetchRelatedVideos } from "@/redux/slices/relatedVideosSlice";
 import { fetchVideoComments } from "@/redux/slices/videoCommentsSlice";
 import { fetchVideo } from "@/redux/slices/videosSlice";
-// import Head from "next/head"; // does not work
+
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -34,11 +34,6 @@ const Page = () => {
 
   return (
     <>
-      <head>
-        <title>{data?.result?.title} - VisionTube</title>
-        <meta property="og:title" content={data?.result?.title} key="title" />
-        <meta name="description" content={data?.result?.description} />
-      </head>
       <div className={`w-full overflow-x-hidden ${showGuide ? "" : "md:px-8"}`}>
         <>
           {data.status === 500 && (

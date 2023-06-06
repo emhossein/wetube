@@ -19,12 +19,10 @@
     "chance": "^1.1.11",
     "eslint-config-next": "13.4.3",
     "next": "13.4.3",
-    "node-vibrant": "3.2.1-alpha.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
-    "react-tuby": "^0.1.24",
     "react-visibility-sensor": "^5.1.1",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
@@ -35,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^5.59.7",
     "@typescript-eslint/parser": "^5.59.7",
     "eslint": "8.41.0",
+    "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0"
   }
 }

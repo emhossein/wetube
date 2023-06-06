@@ -33,4 +33,19 @@
   .position-unset {
     position: unset !important;
   }
+
+  .snap-scrollbar-container {
+    position: relative;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y mandatory;
+    height: calc(100vh - 55px);
+    width: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .snap-scrollbar-container::-webkit-scrollbar {
+    display: none;
+  }
 }

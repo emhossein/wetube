@@ -16,6 +16,7 @@ import videoCommentsReducer from "./slices/videoCommentsSlice";
 import channelFeaturedChannelsReducer from "./slices/channelFeaturedChannelsSlice";
 import searchReducer from "./slices/searchSlice";
 import channelSearchReducer from "./slices/channelSearch";
+import urlReducer, { urlApi } from "./slices/urlSlice";
 
 export const store = configureStore({
   reducer: {
@@ -35,7 +36,11 @@ export const store = configureStore({
     channelFeaturedChannelsReducer,
     searchReducer,
     channelSearchReducer,
+    urlReducer,
+    [urlApi.reducerPath]: urlApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(urlApi.middleware),
 
   devTools: process.env.NODE_ENV !== "production",
 });

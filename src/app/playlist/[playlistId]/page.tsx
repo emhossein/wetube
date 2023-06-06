@@ -7,7 +7,7 @@ import {
   fetchAdditionalPlaylistDetails,
   fetchPlaylistDetails,
 } from "@/redux/slices/playlistDetailsSlice";
-// import Head from "next/head"; //does not work
+
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -33,11 +33,6 @@ const Playlist = () => {
 
   return (
     <>
-      <head>
-        <title>{data?.meta?.title} - VisionTube</title>
-        <meta property="og:title" content={data?.meta?.title} key="title" />
-        <meta name="description" content={data?.meta?.title} />
-      </head>
       <PlaylistHome />;
     </>
   );

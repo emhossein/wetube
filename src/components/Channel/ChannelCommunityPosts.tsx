@@ -1,14 +1,16 @@
-import { useBottomReached } from "@/hooks/useBottomReached";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { CommentIcon, LikeIcon } from "../Icons";
+import React, { useEffect } from "react";
 import {
   fetchAdditionalChannelCommunity,
   fetchChannelCommunity,
 } from "@/redux/slices/channelCommunitySlice";
-import React, { useEffect } from "react";
-import LoadingSpinner from "../LoadingSpinner";
-import Link from "next/link";
-import { CommentIcon, LikeIcon } from "../Icons";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+
 import Image from "next/image";
+import Link from "next/link";
+import LoadingSpinner from "../LoadingSpinner";
+import extractUrlAndHashtags from "@/utils/extractUrlAndHashtags";
+import { useBottomReached } from "@/hooks/useBottomReached";
 
 const ChannelCommunityPosts = ({ id }: { id: string }) => {
   const isBottomReached = useBottomReached();
@@ -57,7 +59,12 @@ const ChannelCommunityPosts = ({ id }: { id: string }) => {
                   {dt.publishedTimeText}
                 </p>
               </div>
-              <p>{dt.contentText}</p>
+              <p
+                className="whitespace-pre-line"
+                dangerouslySetInnerHTML={{
+                  __html: extractUrlAndHashtags(dt.contentText),
+                }}
+              />
               {dt.attachment?.type === "image" && (
                 <Image
                   fill

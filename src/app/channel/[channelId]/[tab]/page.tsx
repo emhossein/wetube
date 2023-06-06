@@ -17,7 +17,6 @@ const Page = () => {
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const { data } = useAppSelector((state) => state.channelDetailsReducer);
-  const channels = data.data.filter((dt) => dt.type === "channel_listing");
 
   const pathParts = pathname.split("/");
   const tab = pathParts[3]?.charAt(0).toUpperCase() + pathParts[3]?.slice(1);

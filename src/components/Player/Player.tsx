@@ -73,7 +73,6 @@ const Player = ({ data, related, id, channel }: iProps) => {
       const handleVideoTimeUpdate = () => {
         if (videoRef.current && soundRef.current) {
           const videoCurrentTime = videoRef.current.currentTime;
-          const soundCurrentTime = soundRef.current.currentTime;
 
           soundRef.current.currentTime = videoCurrentTime;
         }

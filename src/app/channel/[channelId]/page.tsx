@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import ChannelHome from "@/components/Channel/ChannelHome";
@@ -8,7 +7,7 @@ import { NextPage } from "next";
 import React from "react";
 import { usePathname } from "next/navigation";
 
-const channelId: NextPage = () => {
+const ChannelId: NextPage = () => {
   const pathname = usePathname();
   const id = pathname.split("/")[2];
   const { data, status } = useAppSelector(
@@ -23,4 +22,4 @@ const channelId: NextPage = () => {
   );
 };
 
-export default channelId;
+export default ChannelId;
