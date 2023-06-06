@@ -1,10 +1,11 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
+
+import LoadingSpinner from "../LoadingSpinner";
+import useDebouncedSearch from "use-debounced-search";
 import { useResolveUrlQuery } from "@/redux/slices/urlSlice";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import useDebouncedSearch from "use-debounced-search";
-import LoadingSpinner from "../LoadingSpinner";
 
 const urlRegex = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/)/;
 
@@ -18,20 +19,22 @@ const ResolveUrl = () => {
   const { data, isLoading, isError } = useResolveUrlQuery(searched);
 
   useEffect(() => {
-    if (urlRegex.test(searched)) {
-      if (data?.webPageType === "WEB_PAGE_TYPE_PLAYLIST") {
-        router.push(
-          `/playlist/${data?.browseId?.slice(2, data?.browseId?.length)}`
-        );
-      } else if (data?.webPageType === "WEB_PAGE_TYPE_WATCH") {
-        router.push(`/video/${data?.videoId}`);
-      } else if (data?.webPageType === "WEB_PAGE_TYPE_SHORTS") {
-        router.push(`/shorts?sh=${data?.videoId}`);
-      } else if (data?.webPageType === "WEB_PAGE_TYPE_CHANNEL") {
-        router.push(`/channel/${data?.browseId}`);
+    if (searched) {
+      if (urlRegex.test(searched)) {
+        if (data?.webPageType === "WEB_PAGE_TYPE_PLAYLIST") {
+          router.push(
+            `/playlist/${data?.browseId?.slice(2, data?.browseId?.length)}`
+          );
+        } else if (data?.webPageType === "WEB_PAGE_TYPE_WATCH") {
+          router.push(`/video/${data?.videoId}`);
+        } else if (data?.webPageType === "WEB_PAGE_TYPE_SHORTS") {
+          router.push(`/shorts?sh=${data?.videoId}`);
+        } else if (data?.webPageType === "WEB_PAGE_TYPE_CHANNEL") {
+          router.push(`/channel/${data?.browseId}`);
+        }
+      } else {
+        setError("Sorry, this url not supported.");
       }
-    } else {
-      setError("Sorry, this url not supported.");
     }
   }, [data]);
 

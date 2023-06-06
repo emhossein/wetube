@@ -1,15 +1,15 @@
 "use client";
 
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+
 import LoadingSpinner from "@/components/LoadingSpinner";
 import Player from "@/components/Player/Player";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchChannelDetails } from "@/redux/slices/channelDetailsSlice";
 import { fetchRelatedVideos } from "@/redux/slices/relatedVideosSlice";
-import { fetchVideoComments } from "@/redux/slices/videoCommentsSlice";
 import { fetchVideo } from "@/redux/slices/videosSlice";
-
+import { fetchVideoComments } from "@/redux/slices/videoCommentsSlice";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
 
 const Page = () => {
   const pathname = usePathname();
@@ -28,7 +28,6 @@ const Page = () => {
   useEffect(() => {
     dispatch(fetchVideo(id));
     dispatch(fetchRelatedVideos(id));
-    dispatch(fetchChannelDetails(data.result.channel_id));
     dispatch(fetchVideoComments(id));
   }, []);
 

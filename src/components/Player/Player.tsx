@@ -1,15 +1,17 @@
-import { useAppDispatch } from "@/redux/hooks";
-import { Welcome } from "@/types/videoTypes";
-import { Welcome as WelcomeRelated } from "@/types/relatedVideoTypes";
-import { Welcome as WelcomeChannel } from "@/types/channelDetailsTypes";
 import React, { useEffect, useRef, useState } from "react";
-import { fetchAdditionalRelatedVideos } from "@/redux/slices/relatedVideosSlice";
-import VisibilitySensor from "react-visibility-sensor";
+
 import LoadingSpinner from "../LoadingSpinner";
 import RelatedVideos from "./RelatedVideos";
-import VideoDetails from "./VideoDetails";
 import VideoComments from "./VideoComments";
+import VideoDetails from "./VideoDetails";
+import VisibilitySensor from "react-visibility-sensor";
+import { Welcome } from "@/types/videoTypes";
+import { Welcome as WelcomeChannel } from "@/types/channelDetailsTypes";
+import { Welcome as WelcomeRelated } from "@/types/relatedVideoTypes";
 import bytesToMegabytes from "@/utils/bitsToMegaBytes";
+import { fetchAdditionalRelatedVideos } from "@/redux/slices/relatedVideosSlice";
+import { fetchChannelDetails } from "@/redux/slices/channelDetailsSlice";
+import { useAppDispatch } from "@/redux/hooks";
 
 type iProps = {
   data: Welcome;
@@ -43,6 +45,10 @@ const Player = ({ data, related, id, channel }: iProps) => {
       setIsLastItemVisible(isVisible);
     }
   };
+
+  useEffect(() => {
+    dispatch(fetchChannelDetails(data.result.channel_id));
+  }, []);
 
   useEffect(() => {
     if (isLastItemVisible && related.continuation) {

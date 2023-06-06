@@ -17,8 +17,8 @@ const Drawer = () => {
       } absolute top-14 z-40 h-full w-full max-w-[240px] bg-black p-3 text-white md:sticky`}
     >
       <div className="sticky top-14">
-        <DrawerItem text="home" icon={HomeIcon} />
-        <DrawerItem text="explore" icon={ExploreIcon} />
+        <DrawerItem text="Home" icon={HomeIcon} />
+        <DrawerItem text="Explore" icon={ExploreIcon} />
         <DrawerItem text="Resolve Url" icon={UrlIcon} />
       </div>
     </nav>
