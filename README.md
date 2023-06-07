@@ -1,3 +1,7 @@
+### v.0.0.8
+
+- add shorts page
+
 ### v.0.0.7
 
 - Resolve url functionality and preparing shorts page

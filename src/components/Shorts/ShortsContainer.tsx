@@ -1,52 +1,69 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
+import LoadingSpinner from "../LoadingSpinner";
 import Shorts from "./Shorts";
 import VisibilitySensor from "react-visibility-sensor";
-import { useSearchParams } from "next/navigation";
+import { fetchAdditionalShortsSequence } from "@/redux/slices/shortsSequenceSlice";
 
 const ShortsContainer = () => {
   const [bottomReached, setBottomReached] = useState<boolean>(false);
+  const [currentShorts, setCurrentShorts] = useState("");
 
-  const searchParams = useSearchParams();
-  const shorts = searchParams.get("sh");
+  const dispatch = useAppDispatch();
+  const { data, status } = useAppSelector(
+    (state) => state.shortsSequenceReducer
+  );
+  const { data: video } = useAppSelector((state) => state.shortsListReducer);
 
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  const handleVisibilityChange = (isVisible: boolean, index: number) => {
+  const handleVisibilityChange = (
+    isVisible: boolean,
+    index: number,
+    id: string
+  ) => {
     if (isVisible) {
-      console.log(`Item ${index} is visible.`);
-      if (arr.length === index) {
+      setCurrentShorts(id);
+      if (data.data.length - 1 === index) {
         setBottomReached(true);
       }
     } else {
-      console.log(`Item ${index} is no longer visible.`);
-      if (arr.length !== index) {
+      if (data.data.length !== index) {
         setBottomReached(false);
       }
     }
   };
 
+  const videoIds = data.data.map((item) => item.videoId);
+  const shortsIds = [video.data[0]?.id, ...videoIds];
+
   useEffect(() => {
-    console.log(bottomReached);
+    if (data.continuation) {
+      dispatch(fetchAdditionalShortsSequence({ params: data.continuation }));
+    }
   }, [bottomReached]);
 
   return (
     <div className="no-scrollbar | w-full overflow-hidden md:-mt-14">
       <div className="snap-scrollbar-container no-scrollbar | h-[calc(100vh-70px)] w-full snap-y overflow-y-scroll md:mt-14">
-        {arr.map((x) => (
+        {shortsIds.map((short, index) => (
           <VisibilitySensor
-            key={x}
+            key={short}
             partialVisibility
             onChange={(isVisible: boolean) =>
-              handleVisibilityChange(isVisible, x)
+              handleVisibilityChange(isVisible, index, short)
             }
           >
-            <Shorts key={x} index={x} />
+            <Shorts
+              id={short}
+              currentShorts={currentShorts}
+              setCurrentShorts={setCurrentShorts}
+            />
           </VisibilitySensor>
         ))}
       </div>
+      {status === "loading" && <LoadingSpinner />}
     </div>
   );
 };

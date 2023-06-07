@@ -11,7 +11,7 @@ export interface Result {
   thumbnail: string;
   description: string;
   uploader?: string;
-  uploaderID?: string;
+  uploader_id?: string;
   uploaderURL?: string;
   channel_id: string;
   channelURL?: string;
@@ -54,20 +54,13 @@ export interface Result {
   vcodec?: string;
   vbr?: number;
   aspectRatio?: number;
-  acodec?: Acodec;
+  acodec?: string;
   abr?: number;
   asr?: number;
   audioChannels?: number;
   epoch?: number;
   type?: string;
   metadataFile?: any;
-}
-
-export enum Acodec {
-  Mp4A402 = "mp4a.40.2",
-  Mp4A405 = "mp4a.40.5",
-  None = "none",
-  Opus = "opus",
 }
 
 export interface AutomaticCaption {
@@ -166,4 +159,8 @@ export interface UploadDate {
   date: string;
   timezoneType?: number;
   timezone?: string;
+}
+
+export interface ShortsList {
+  data: Result[];
 }

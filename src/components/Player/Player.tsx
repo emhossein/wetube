@@ -120,7 +120,7 @@ const Player = ({ data, related, id, channel }: iProps) => {
           <video
             src={video.url}
             controls
-            className="z-10 aspect-video w-full hover:cursor-pointer"
+            className="z-10 aspect-video w-full outline-none hover:cursor-pointer"
             poster={data.result.thumbnail}
             controlsList="noplaybackrate"
             disableRemotePlayback
@@ -138,7 +138,7 @@ const Player = ({ data, related, id, channel }: iProps) => {
               controlsList="noplaybackrate"
               disableRemotePlayback
               src={videoWithoutSound.url}
-              className="z-20 aspect-video w-screen hover:cursor-pointer md:w-full"
+              className="z-20 aspect-video w-screen outline-none hover:cursor-pointer md:w-full"
               poster={data.result.thumbnail}
               playsInline
               webkit-playsInline

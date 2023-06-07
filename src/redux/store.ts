@@ -1,22 +1,24 @@
-import { configureStore } from "@reduxjs/toolkit";
+import urlReducer, { urlApi } from "./slices/urlSlice";
 
-import guideStateReducer from "./slices/guideStateSlice";
-import homeFeedReducer from "./slices/homeFeedSlice";
+import channelCommunityReducer from "./slices/channelCommunitySlice";
 import channelDetailsReducer from "./slices/channelDetailsSlice";
-import channelTabsStateReducer from "./slices/channelTabsStateSlice";
-import channelVideosReducer from "./slices/channelVideosSlice";
-import channelShortsReducer from "./slices/channelShortsSlice";
+import channelFeaturedChannelsReducer from "./slices/channelFeaturedChannelsSlice";
 import channelLiveStreamsReducer from "./slices/channelLiveStreamsSlice";
 import channelPlaylistsReducer from "./slices/channelPlayListsSlice";
-import channelCommunityReducer from "./slices/channelCommunitySlice";
-import playlistDetailsReducer from "./slices/playlistDetailsSlice";
-import videoReducer from "./slices/videosSlice";
-import relatedVideosReducer from "./slices/relatedVideosSlice";
-import videoCommentsReducer from "./slices/videoCommentsSlice";
-import channelFeaturedChannelsReducer from "./slices/channelFeaturedChannelsSlice";
-import searchReducer from "./slices/searchSlice";
 import channelSearchReducer from "./slices/channelSearch";
-import urlReducer, { urlApi } from "./slices/urlSlice";
+import channelShortsReducer from "./slices/channelShortsSlice";
+import channelTabsStateReducer from "./slices/channelTabsStateSlice";
+import channelVideosReducer from "./slices/channelVideosSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import guideStateReducer from "./slices/guideStateSlice";
+import homeFeedReducer from "./slices/homeFeedSlice";
+import playlistDetailsReducer from "./slices/playlistDetailsSlice";
+import relatedVideosReducer from "./slices/relatedVideosSlice";
+import searchReducer from "./slices/searchSlice";
+import shortsListReducer from "./slices/shortsVideoSlice";
+import shortsSequenceReducer from "./slices/shortsSequenceSlice";
+import videoCommentsReducer from "./slices/videoCommentsSlice";
+import videoReducer from "./slices/videosSlice";
 
 export const store = configureStore({
   reducer: {
@@ -38,6 +40,8 @@ export const store = configureStore({
     channelSearchReducer,
     urlReducer,
     [urlApi.reducerPath]: urlApi.reducer,
+    shortsSequenceReducer,
+    shortsListReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(urlApi.middleware),

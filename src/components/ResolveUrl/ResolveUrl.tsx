@@ -39,7 +39,11 @@ const ResolveUrl = () => {
   }, [data]);
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <div className="center h-screen w-full">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (isError) {
@@ -49,8 +53,6 @@ const ResolveUrl = () => {
       </div>
     );
   }
-
-  console.log(error);
 
   return (
     <div className="center mx-auto flex h-screen flex-col md:m-0 md:w-full">

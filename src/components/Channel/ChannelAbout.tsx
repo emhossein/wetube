@@ -1,16 +1,13 @@
 import React from "react";
+import extractUrlAndHashtags from "@/utils/extractUrlAndHashtags";
 
 const ChannelAbout = ({ about }: { about: string }) => {
-  const lines = about.split("\n");
-
   return (
     <div>
-      {lines.map((line, index) => (
-        <React.Fragment key={index}>
-          {line}
-          <br />
-        </React.Fragment>
-      ))}
+      <div
+        className="whitespace-pre-line"
+        dangerouslySetInnerHTML={{ __html: extractUrlAndHashtags(about) }}
+      ></div>
     </div>
   );
 };
