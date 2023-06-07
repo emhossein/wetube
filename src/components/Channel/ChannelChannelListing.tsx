@@ -1,8 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
+
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { fetchChannelFeaturedChannels } from "@/redux/slices/channelFeaturedChannelsSlice";
+
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import { fetchChannelFeaturedChannels } from "@/redux/slices/channelFeaturedChannelsSlice";
 
 const ChannelChannelListing = ({ id }: { id: string }) => {
   const dispatch = useAppDispatch();
@@ -29,12 +32,11 @@ const ChannelChannelListing = ({ id }: { id: string }) => {
             >
               <div className="center flex-col">
                 <div className="h-[90px] w-[90px] rounded-full">
-                  <Image
+                  <img
                     src={`https:${
                       channel.thumbnail[channel.thumbnail.length - 1].url
                     }`}
                     alt={channel.title}
-                    fill
                     className="position-unset | rounded-full"
                   />
                 </div>

@@ -1,11 +1,13 @@
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { fetchAdditionalVideoComments } from "@/redux/slices/videoCommentsSlice";
-import React, { useEffect, useState } from "react";
-import VisibilitySensor from "react-visibility-sensor";
-import LoadingSpinner from "../LoadingSpinner";
+/* eslint-disable @next/next/no-img-element */
+
 import { CloseIcon, CommentIcon, LikeIcon } from "../Icons";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+
 import Link from "next/link";
+import LoadingSpinner from "../LoadingSpinner";
+import VisibilitySensor from "react-visibility-sensor";
+import { fetchAdditionalVideoComments } from "@/redux/slices/videoCommentsSlice";
 
 const VideoComments = () => {
   const [loading, setLoading] = useState(false);
@@ -62,8 +64,7 @@ const VideoComments = () => {
         </h1>
         <div className="mt-1 flex items-center space-x-2">
           <div className="h-7 w-7 shrink-0">
-            <Image
-              fill
+            <img
               src={firstComment?.authorThumbnail[0].url}
               alt={firstComment?.authorChannelId}
               className="position-unset | mr-4 rounded-full "
@@ -101,8 +102,7 @@ const VideoComments = () => {
                     href={`/channel/${cmt.authorChannelId}`}
                     className="h-10 w-10 shrink-0"
                   >
-                    <Image
-                      fill
+                    <img
                       src={cmt.authorThumbnail[0].url}
                       alt={cmt.authorChannelId}
                       className="position-unset | mr-4 rounded-full "
@@ -157,8 +157,7 @@ const VideoComments = () => {
                   href={`/channel/${cmt.authorChannelId}`}
                   className="h-10 w-10 shrink-0"
                 >
-                  <Image
-                    fill
+                  <img
                     src={cmt.authorThumbnail[0].url}
                     alt={cmt.authorChannelId}
                     className="position-unset | mr-4 rounded-full "

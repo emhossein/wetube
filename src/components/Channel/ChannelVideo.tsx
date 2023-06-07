@@ -1,9 +1,9 @@
+import { Datum } from "@/types/channelVideosTypes";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import formatNumber from "./../../utils/numberFormat";
-import Link from "next/link";
-import { Datum } from "@/types/channelVideosTypes";
 import { useAppSelector } from "@/redux/hooks";
-import Image from "next/image";
 
 const Video = ({ item, dataType }: { item: Datum; dataType?: string }) => {
   const { data } = useAppSelector((state) => state.channelVideosReducer);
@@ -15,7 +15,11 @@ const Video = ({ item, dataType }: { item: Datum; dataType?: string }) => {
           dataType === "shorts" && "h-52 md:h-72 lg:h-80"
         } overflow-hidden bg-gray-350 md:rounded-xl`}
       >
-        <div className="h-full w-full object-cover">
+        <div
+          className={`${
+            dataType === "shorts" ? "aspect-[9/16]" : "aspect-video"
+          } w-full object-cover`}
+        >
           <Image
             fill
             src={item?.thumbnail?.[item.thumbnail.length - 1]?.url}

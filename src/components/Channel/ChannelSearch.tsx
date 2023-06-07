@@ -1,20 +1,21 @@
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import {
-  fetchAdditionalChannelSearch,
-  fetchChannelSearchResults,
-} from "@/redux/slices/channelSearch";
-import React, { useEffect } from "react";
-import useDebouncedSearch from "use-debounced-search";
-import LoadingSpinner from "../LoadingSpinner";
-import Search from "../Search/Search";
-import Image from "next/image";
-import Link from "next/link";
-import formatNumber from "@/utils/numberFormat";
 import {
   BreakPointHooks,
   breakpointsTailwind,
 } from "@react-hooks-library/core";
+import React, { useEffect } from "react";
+import {
+  fetchAdditionalChannelSearch,
+  fetchChannelSearchResults,
+} from "@/redux/slices/channelSearch";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+
+import Image from "next/image";
+import Link from "next/link";
+import LoadingSpinner from "../LoadingSpinner";
+import Search from "../Search/Search";
+import formatNumber from "@/utils/numberFormat";
 import { useBottomReached } from "@/hooks/useBottomReached";
+import useDebouncedSearch from "use-debounced-search";
 
 const ChannelSearch = ({ id }: { id: string }) => {
   const isBottomReached = useBottomReached();
@@ -66,7 +67,7 @@ const ChannelSearch = ({ id }: { id: string }) => {
             >
               <Link
                 href={`/video/${dt.videoId}`}
-                className="relative md:mr-4 md:aspect-video"
+                className="relative rounded-lg bg-gray-350 md:mr-4 md:aspect-video"
               >
                 <Image
                   alt={dt.title}

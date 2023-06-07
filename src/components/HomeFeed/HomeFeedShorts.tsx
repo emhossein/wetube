@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { DatumDatum } from "@/types/homeFeedTypes";
-import formatNumber from "@/utils/numberFormat";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import formatNumber from "@/utils/numberFormat";
 
 const HomeFeedShorts = ({
   short,
@@ -22,7 +23,11 @@ const HomeFeedShorts = ({
       href={`/${dtType === "shorts" ? "shorts?sh=" : "video/"}${short.videoId}`}
       className={className}
     >
-      <div className="relative w-full object-cover md:rounded-lg">
+      <div
+        className={`${
+          dtType === "video" ? "aspect-video" : "aspect-[9/16]"
+        } relative w-full bg-gray-350 object-cover md:rounded-lg`}
+      >
         <Image
           alt={short.title}
           src={short.thumbnail[0].url}

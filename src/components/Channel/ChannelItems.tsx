@@ -1,16 +1,21 @@
-import { useAppSelector } from "@/redux/hooks";
 import { Data } from "@/types/channelDetailsTypes";
-import formatNumber from "@/utils/numberFormat";
+import Image from "next/image";
 import React from "react";
 import { VerifiedIcon } from "../Icons";
-import Image from "next/image";
+import formatNumber from "@/utils/numberFormat";
+import { useAppSelector } from "@/redux/hooks";
 
 const ChannelItems = ({ dt }: { dt: Data }) => {
   const { data } = useAppSelector((state) => state.channelDetailsReducer);
 
   return (
     <>
-      <div title={dt.title} className="relative rounded-md">
+      <div
+        title={dt.title}
+        className={`${
+          dt.type === "video" ? "aspect-video" : "aspect-[9/16]"
+        } relative w-full rounded-md bg-gray-350`}
+      >
         <Image
           src={dt?.thumbnail?.[dt.thumbnail.length - 1].url}
           alt={dt.title}

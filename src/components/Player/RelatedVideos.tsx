@@ -1,8 +1,8 @@
 import { Datum } from "@/types/relatedVideoTypes";
-import formatNumber from "@/utils/numberFormat";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import formatNumber from "@/utils/numberFormat";
 
 type iProps = {
   relate: Datum;
@@ -15,7 +15,7 @@ const RelatedVideos = ({ relate }: iProps) => {
       key={relate.videoId}
       className="mt-2 flex"
     >
-      <div className="relative mr-2 h-full w-40 overflow-hidden rounded-md">
+      <div className="relative mr-2 aspect-video h-full w-40 overflow-hidden rounded-md bg-gray-350">
         <Image
           src={relate.thumbnail[0].url}
           alt={relate.title}

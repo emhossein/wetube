@@ -1,16 +1,17 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
+import { DatumDatum } from "@/types/homeFeedTypes";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import formatNumber from "./../../utils/numberFormat";
-import { DatumDatum } from "@/types/homeFeedTypes";
-import Link from "next/link";
-import Image from "next/image";
 
 const Video = ({ item }: { item: DatumDatum }) => {
   return (
     <div className="w-full hover:cursor-pointer">
       <div className="relative overflow-hidden bg-gray-350 md:rounded-xl">
-        <div className="w-full object-cover">
+        <div className="aspect-video w-full object-cover">
           <Image
             src={item?.thumbnail?.[0]?.url}
             alt={item.title}
@@ -31,8 +32,7 @@ const Video = ({ item }: { item: DatumDatum }) => {
           href={`/channel/${item.channelId}`}
           className="left| mr-3 h-9 w-9 rounded-full"
         >
-          <Image
-            fill
+          <img
             src={item!.channelThumbnail![0].url!}
             alt={item.title}
             className="position-unset | rounded-full"

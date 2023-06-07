@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { CommentIcon, LikeIcon } from "../Icons";
 import React, { useEffect } from "react";
 import {
@@ -44,8 +46,7 @@ const ChannelCommunityPosts = ({ id }: { id: string }) => {
               href={`/channel/${dt.authorChannelId}`}
               className="h-10 w-10 shrink-0"
             >
-              <Image
-                fill
+              <img
                 src={`https:${dt.authorThumbnail[0].url}`}
                 alt={dt.authorText}
                 className="position-unset | mr-4 rounded-full "
@@ -66,8 +67,7 @@ const ChannelCommunityPosts = ({ id }: { id: string }) => {
                 }}
               />
               {dt.attachment?.type === "image" && (
-                <Image
-                  fill
+                <img
                   src={
                     dt?.attachment?.image?.[dt?.attachment?.image.length - 1]
                       .url
@@ -79,8 +79,7 @@ const ChannelCommunityPosts = ({ id }: { id: string }) => {
               {dt.attachment?.type === "multi_image" && (
                 <div className="flex w-full space-x-1">
                   <div className="mt-4 w-1/2 rounded-md">
-                    <Image
-                      fill
+                    <img
                       src={
                         dt?.attachment?.image?.[0][
                           dt?.attachment?.image?.[0].length - 1
@@ -91,8 +90,7 @@ const ChannelCommunityPosts = ({ id }: { id: string }) => {
                     />
                   </div>
                   <div className="mt-4 w-1/2 rounded-md">
-                    <Image
-                      fill
+                    <img
                       src={
                         dt?.attachment?.image?.[1][
                           dt?.attachment?.image?.[1].length - 1

@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { DatumDatum } from "@/types/channelDetailsTypes";
-import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
-import ChannelItems from "./ChannelItems";
-import VisibilitySensor from "react-visibility-sensor";
 import {
   BreakPointHooks,
   breakpointsTailwind,
 } from "@react-hooks-library/core";
+import React, { useEffect, useRef, useState } from "react";
+
+import ChannelItems from "./ChannelItems";
+import { DatumDatum } from "@/types/channelDetailsTypes";
+import Link from "next/link";
 import { ShortsIcon } from "../Icons";
+import VisibilitySensor from "react-visibility-sensor";
 
 const ChannelList = ({
   video,
@@ -90,13 +91,16 @@ const ChannelList = ({
               onChange={(isVisible: boolean) =>
                 handleVisibilityChange(index, isVisible)
               }
-              partialVisibility
               offset={{ right: 1 }}
               key={dt.videoId}
             >
               <div
                 ref={itemRef}
-                className="mb-3 w-full flex-none sm:w-1/4 md:w-1/4 lg:w-[16.4%]"
+                className={`mb-3 w-full flex-none ${
+                  dt.type === "video"
+                    ? "sm:w-1/4 md:w-1/4 lg:w-[16.4%]"
+                    : "sm:w-1/4 md:w-1/4 lg:w-1/12"
+                }`}
               >
                 <Link
                   href={`/${dtType === "shorts" ? "shorts" : "video"}/${

@@ -1,8 +1,9 @@
 import { DatumDatum, WelcomeDatum } from "@/types/channelDetailsTypes";
-import React from "react";
-import ChannelVideoListing from "./ChannelVideoListing";
+
 import ChannelChannelListing from "./ChannelChannelListing";
 import ChannelShortsListing from "./ChannelShortsListing";
+import ChannelVideoListing from "./ChannelVideoListing";
+import React from "react";
 
 const ChannelHome = ({ data, id }: { data: WelcomeDatum[]; id: string }) => {
   const videos = data?.filter((dt) => dt.type === "video_listing");

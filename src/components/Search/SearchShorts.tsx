@@ -1,8 +1,9 @@
-import React, { useState } from "react";
 import { DatumDatum, WelcomeDatum } from "@/types/searchTypes";
+import React, { useState } from "react";
+
 import Image from "next/image";
-import VisibilitySensor from "react-visibility-sensor";
 import Link from "next/link";
+import VisibilitySensor from "react-visibility-sensor";
 
 const SearchShorts = ({ dt }: { dt: WelcomeDatum }) => {
   const [pos, setPos] = useState(0);
@@ -67,7 +68,7 @@ const SearchShorts = ({ dt }: { dt: WelcomeDatum }) => {
                 key={short.videoId}
                 className="w-1/4 flex-none md:w-1/6 lg:w-1/12"
               >
-                <div className="w-full">
+                <div className="aspect-[9/16] w-full rounded-md bg-gray-350">
                   <Image
                     alt={short.title}
                     src={short.thumbnail[short.thumbnail.length - 1].url}

@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import {
   BreakPointHooks,
   breakpointsTailwind,
@@ -35,7 +37,7 @@ const Search = () => {
             >
               <Link
                 href={`/video/${dt.videoId}`}
-                className="relative md:mr-4 md:aspect-video"
+                className="relative rounded-lg bg-gray-350 md:mr-4 md:aspect-video"
               >
                 <Image
                   alt={dt.title}
@@ -63,13 +65,12 @@ const Search = () => {
                     className="flex items-center space-x-2"
                   >
                     <div className="h-6 w-6">
-                      <Image
+                      <img
                         alt={dt.channelTitle}
                         src={
                           dt.channelThumbnail[dt.channelThumbnail?.length - 1]
                             .url
                         }
-                        fill
                         className="position-unset | rounded-full"
                       />
                     </div>
@@ -105,30 +106,32 @@ const Search = () => {
           );
         }
 
-        // if (dt.type === "query_listing") {
-        //   return (
-        //     <div key={dt.data[0].query} className="my-6">
-        //       <h2 className="mb-4 text-lg">{dt.title}</h2>
-        //       <div className="flex space-x-2 overflow-y-scroll">
-        //         {dt.data.map((query) => (
-        //           <Link href={`/search/${query.query}`} key={query.query}>
-        //             <div className="w-28">
-        //               <Image
-        //                 fill
-        //                 alt={query.query}
-        //                 src={`https:${
-        //                   query.thumbnail[query.thumbnail.length - 1].url
-        //                 }`}
-        //                 className="position-unset | rounded-md"
-        //               />
-        //             </div>
-        //             <p className="text-center text-sm">{query.query}</p>
-        //           </Link>
-        //         ))}
-        //       </div>
-        //     </div>
-        //   );
-        // }
+        if (dt.type === "query_listing") {
+          console.log(dt);
+
+          return (
+            <div key={dt.data[0].query} className="my-6">
+              <h2 className="mb-4 text-lg">{dt.title}</h2>
+              <div className="no-scrollbar | flex space-x-2 overflow-y-scroll">
+                {dt.data.slice(0, 5).map((query) => (
+                  <Link href={`/search/${query.query}`} key={query.query}>
+                    <div className="aspect-video w-40 overflow-hidden rounded-md bg-gray-350">
+                      <Image
+                        fill
+                        alt={query.query}
+                        src={`https:${
+                          query.thumbnail[query.thumbnail.length - 1].url
+                        }`}
+                        className="position-unset | rounded-md"
+                      />
+                    </div>
+                    <p className="text-center text-sm">{query.query}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        }
 
         return <p key={key}>{/* {dt.title} */}</p>;
       })}

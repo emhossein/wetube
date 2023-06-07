@@ -1,15 +1,16 @@
 "use client";
 
-import VideoContainer from "@/components/Video/VideoContainer";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   fetchAdditionalHomeFeed,
   fetchHomeFeed,
 } from "@/redux/slices/homeFeedSlice";
-import { useEffect } from "react";
-import { useBottomReached } from "@/hooks/useBottomReached";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+
 import HomeFeedShortsListing from "@/components/HomeFeed/HomeFeedShortsListing";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import VideoContainer from "@/components/Video/VideoContainer";
+import { useBottomReached } from "@/hooks/useBottomReached";
+import { useEffect } from "react";
 
 export default function Home() {
   const isBottomReached = useBottomReached();
@@ -39,7 +40,9 @@ export default function Home() {
       {shorts.length && (
         <HomeFeedShortsListing dtType="shorts" shorts={shorts} />
       )}
-      {videos.length && <HomeFeedShortsListing shorts={videos} />}
+      {videos.length && (
+        <HomeFeedShortsListing dtType="video" shorts={videos} />
+      )}
       <VideoContainer data={data as any} />
       {status === "loading" && <LoadingSpinner />}
     </main>

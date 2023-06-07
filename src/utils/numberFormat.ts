@@ -8,5 +8,5 @@ export default function formatNumber(number: number): string {
     symbolIndex++;
   }
 
-  return number.toFixed(1).replace(regex, "$1") + symbols[symbolIndex];
+  return number?.toFixed(1).replace(regex, "$1") + symbols[symbolIndex];
 }

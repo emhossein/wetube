@@ -24,6 +24,7 @@ export interface Datum {
   sequenceParams?: string;
   playlistId?: string;
   videoCount?: string;
+  data?: Datum[];
 }
 
 export interface Avatar {
@@ -36,6 +37,7 @@ export enum Type {
   Video = "video",
   Shorts = "shorts",
   Playlist = "playlist",
+  PlaylistListing = "playlist_listing",
 }
 
 export interface Meta {

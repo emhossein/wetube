@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { LikeIcon, MoreIcon, ShareIcon, VerifiedIcon } from "../Icons";
 import React, { useState } from "react";
 
@@ -28,12 +30,11 @@ const VideoDetails = ({ data, channel }: iProps) => {
         <div className="mb-2 flex md:mb-0">
           <Link href={`/channel/${channel?.meta?.channelId}`}>
             <div className="mr-3 h-10 w-10 overflow-hidden rounded-full">
-              <Image
+              <img
                 src={
                   channel?.meta?.avatar?.[channel?.meta?.avatar.length - 1]?.url
                 }
                 alt={channel?.meta?.title}
-                fill
                 className="position-unset"
               />
             </div>

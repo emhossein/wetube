@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import { Datum } from "@/types/channelVideosTypes";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+
 import { ColorData } from "@/types/colorDataTypes";
-import { fetchColorData } from "@/utils/fetchColorData";
-import { PlaylistsIcon } from "../Icons";
+import { Datum } from "@/types/channelVideosTypes";
 import Image from "next/image";
+import Link from "next/link";
+import { PlaylistsIcon } from "../Icons";
+import { fetchColorData } from "@/utils/fetchColorData";
 
 const ChannelPlayListItem = ({ dt }: { dt: Datum }) => {
   const [colorData, setColorData] = useState<ColorData | null>(null);
@@ -30,9 +31,9 @@ const ChannelPlayListItem = ({ dt }: { dt: Datum }) => {
       className="h-fit hover:cursor-pointer md:w-full"
     >
       <div>
-        <div className="relative">
+        <div className="relative aspect-video w-full overflow-hidden rounded-md bg-gray-350">
           <Image
-            src={dt.thumbnail[dt.thumbnail.length - 1].url}
+            src={dt.thumbnail?.[dt.thumbnail?.length - 1]?.url}
             alt={dt.playlistId!}
             fill
             className="position-unset | rounded-md"
