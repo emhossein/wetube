@@ -1,14 +1,15 @@
-import { useAppSelector } from "@/redux/hooks";
-import Image from "next/image";
-import React from "react";
-import LoadingSpinner from "../LoadingSpinner";
-import formatNumber from "@/utils/numberFormat";
-import Link from "next/link";
 import {
   BreakPointHooks,
   breakpointsTailwind,
 } from "@react-hooks-library/core";
+
+import Image from "next/image";
+import Link from "next/link";
+import LoadingSpinner from "../LoadingSpinner";
+import React from "react";
 import SearchShorts from "./SearchShorts";
+import formatNumber from "@/utils/numberFormat";
+import { useAppSelector } from "@/redux/hooks";
 
 const Search = () => {
   const { isSmaller } = BreakPointHooks(breakpointsTailwind);
@@ -23,7 +24,6 @@ const Search = () => {
     >
       {data.data.map((dt, index) => {
         const key = dt.title + String(index);
-        console.log(dt.type);
 
         if (dt.type === "video") {
           return (

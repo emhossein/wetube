@@ -1,6 +1,6 @@
 ### v.0.0.8
 
-- add shorts page
+- -add shorts page
 
 ### v.0.0.7
 

@@ -39,17 +39,11 @@ const Shorts = ({ id, currentShorts, setCurrentShorts }: iProps) => {
     videoRef.current?.play();
   };
 
-  if (videoRef.current) {
-    console.log(videoRef.current?.paused);
-  }
-
   useEffect(() => {
     if (visible) {
       if (data.data.some((v) => v?.id === id)) {
-        console.log("video found");
       } else {
         dispatch(fetchAdditionalShorts({ id: id! }));
-        console.log("it has not the video");
       }
     }
   }, [visible]);
