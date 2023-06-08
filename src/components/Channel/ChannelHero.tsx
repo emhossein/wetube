@@ -2,11 +2,9 @@
 
 import { CaretRightIcon, VerifiedIcon } from "../Icons";
 
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Welcome } from "@/types/channelDetailsTypes";
-import { base64 } from "@/utils/base64Placeholder";
 import formatNumber from "@/utils/numberFormat";
 
 const Channel = ({ data }: { data: Welcome }) => {

@@ -1,4 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 import ChannelAbout from "@/components/Channel/ChannelAbout";
 import ChannelChannelListing from "@/components/Channel/ChannelChannelListing";
@@ -8,10 +12,8 @@ import ChannelPlaylists from "@/components/Channel/ChannelPlaylists";
 import ChannelSearch from "@/components/Channel/ChannelSearch";
 import ChannelShorts from "@/components/Channel/ChannelShorts";
 import ChannelVideos from "@/components/Channel/ChannelVideos";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { tabChange } from "@/redux/slices/channelTabsStateSlice";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
 
 const Page = () => {
   const pathname = usePathname();

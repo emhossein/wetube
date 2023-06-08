@@ -1,15 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import Search from "@/components/Search/Search";
-import { useBottomReached } from "@/hooks/useBottomReached";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import React, { useEffect } from "react";
 import {
   fetchAdditionalSearchResult,
   fetchSearchResult,
   setSearchedTerm,
 } from "@/redux/slices/searchSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+
+import Search from "@/components/Search/Search";
+import { Welcome } from "@/types/searchTypes";
+import { useBottomReached } from "@/hooks/useBottomReached";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
 
 const Page = () => {
   const pathname = usePathname();
@@ -17,7 +20,9 @@ const Page = () => {
   const isBottomReached = useBottomReached();
 
   const dispatch = useAppDispatch();
-  const { data, searchedTerm } = useAppSelector((state) => state.searchReducer);
+  const { data, searchedTerm, status } = useAppSelector(
+    (state) => state.searchReducer
+  );
 
   useEffect(() => {
     if (term !== searchedTerm) {
@@ -37,7 +42,7 @@ const Page = () => {
     }
   }, [isBottomReached]);
 
-  return <Search />;
+  return <Search data={data as Welcome} status={status} />;
 };
 
 export default Page;

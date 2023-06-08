@@ -1,30 +1,32 @@
-/* eslint-disable @next/next/no-img-element */
-
 import {
   BreakPointHooks,
   breakpointsTailwind,
 } from "@react-hooks-library/core";
+import { Welcome, WelcomeDatum } from "@/types/searchTypes";
 
 import Image from "next/image";
 import Link from "next/link";
 import LoadingSpinner from "../LoadingSpinner";
 import React from "react";
 import SearchShorts from "./SearchShorts";
+import { Welcome as WelcomeHashtags } from "@/types/hashtagTypes.d";
 import formatNumber from "@/utils/numberFormat";
-import { useAppSelector } from "@/redux/hooks";
 
-const Search = () => {
+type iProps = {
+  data: Welcome | WelcomeHashtags;
+  status: string;
+};
+
+const Search = ({ data, status }: iProps) => {
   const { isSmaller } = BreakPointHooks(breakpointsTailwind);
 
   const small = isSmaller("md");
-
-  const { data, status } = useAppSelector((state) => state.searchReducer);
 
   return (
     <div
       className={`mx-auto mt-6 w-full text-white md:w-4/5 md:overflow-hidden`}
     >
-      {data.data.map((dt, index) => {
+      {data?.data?.map((dt, index) => {
         const key = dt.title + String(index);
 
         if (dt.type === "video") {
@@ -81,7 +83,7 @@ const Search = () => {
                   {dt.description}
                 </p>
                 <div className="mt-1 flex space-x-1">
-                  {dt.badges?.map((badge) => (
+                  {dt?.badges?.map((badge) => (
                     <p
                       key={badge}
                       className="rounded-sm bg-gray-350 px-1 text-xs"
@@ -98,10 +100,10 @@ const Search = () => {
         if (dt.type === "shorts_listing") {
           return (
             <div
-              key={dt.data[0].sequenceParams}
+              key={dt.data?.[0]?.sequenceParams}
               className="no-scrollbar | relative mx-auto mb-6 overflow-y-scroll"
             >
-              <SearchShorts dt={dt} />
+              <SearchShorts dt={dt as WelcomeDatum} />
             </div>
           );
         }
@@ -110,10 +112,10 @@ const Search = () => {
           console.log(dt);
 
           return (
-            <div key={dt.data[0].query} className="my-6">
+            <div key={dt?.data?.[0].query} className="my-6">
               <h2 className="mb-4 text-lg">{dt.title}</h2>
               <div className="no-scrollbar | flex space-x-2 overflow-y-scroll">
-                {dt.data.slice(0, 5).map((query) => (
+                {dt?.data?.slice(0, 5).map((query) => (
                   <Link href={`/search/${query.query}`} key={query.query}>
                     <div className="aspect-video w-40 overflow-hidden rounded-md bg-gray-350">
                       <Image

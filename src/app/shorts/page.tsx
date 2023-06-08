@@ -1,13 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 "use client";
 
 import React, { useEffect } from "react";
-import {
-  fetchAdditionalShorts,
-  fetchShorts,
-} from "@/redux/slices/shortsVideoSlice";
 
 import ShortsContainer from "@/components/Shorts/ShortsContainer";
+import { fetchAdditionalShorts } from "@/redux/slices/shortsVideoSlice";
 import { fetchShortsSequence } from "@/redux/slices/shortsSequenceSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { useSearchParams } from "next/navigation";

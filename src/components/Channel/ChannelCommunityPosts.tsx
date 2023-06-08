@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 import { CommentIcon, LikeIcon } from "../Icons";
 import React, { useEffect } from "react";
 import {
@@ -8,7 +6,6 @@ import {
 } from "@/redux/slices/channelCommunitySlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
-import Image from "next/image";
 import Link from "next/link";
 import LoadingSpinner from "../LoadingSpinner";
 import extractUrlAndHashtags from "@/utils/extractUrlAndHashtags";

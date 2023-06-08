@@ -11,6 +11,7 @@ import channelTabsStateReducer from "./slices/channelTabsStateSlice";
 import channelVideosReducer from "./slices/channelVideosSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import guideStateReducer from "./slices/guideStateSlice";
+import hashtagReducer from "./slices/hashtagSlice";
 import homeFeedReducer from "./slices/homeFeedSlice";
 import playlistDetailsReducer from "./slices/playlistDetailsSlice";
 import relatedVideosReducer from "./slices/relatedVideosSlice";
@@ -42,6 +43,7 @@ export const store = configureStore({
     [urlApi.reducerPath]: urlApi.reducer,
     shortsSequenceReducer,
     shortsListReducer,
+    hashtagReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(urlApi.middleware),

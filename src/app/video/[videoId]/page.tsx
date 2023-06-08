@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useEffect } from "react";
@@ -5,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 import LoadingSpinner from "@/components/LoadingSpinner";
 import Player from "@/components/Player/Player";
-import { fetchChannelDetails } from "@/redux/slices/channelDetailsSlice";
 import { fetchRelatedVideos } from "@/redux/slices/relatedVideosSlice";
 import { fetchVideo } from "@/redux/slices/videosSlice";
 import { fetchVideoComments } from "@/redux/slices/videoCommentsSlice";

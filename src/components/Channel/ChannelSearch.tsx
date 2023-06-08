@@ -1,7 +1,3 @@
-import {
-  BreakPointHooks,
-  breakpointsTailwind,
-} from "@react-hooks-library/core";
 import React, { useEffect } from "react";
 import {
   fetchAdditionalChannelSearch,
@@ -12,7 +8,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import LoadingSpinner from "../LoadingSpinner";
-import Search from "../Search/Search";
 import formatNumber from "@/utils/numberFormat";
 import { useBottomReached } from "@/hooks/useBottomReached";
 import useDebouncedSearch from "use-debounced-search";
@@ -25,10 +20,6 @@ const ChannelSearch = ({ id }: { id: string }) => {
   const { data, status } = useAppSelector(
     (state) => state.channelSearchReducer
   );
-
-  const { isSmaller } = BreakPointHooks(breakpointsTailwind);
-
-  const small = isSmaller("md");
 
   useEffect(() => {
     if (searched !== "") {

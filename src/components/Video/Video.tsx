@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import { DatumDatum } from "@/types/homeFeedTypes";
 import Image from "next/image";
 import Link from "next/link";

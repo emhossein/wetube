@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 import { CloseIcon, CommentIcon, LikeIcon } from "../Icons";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";

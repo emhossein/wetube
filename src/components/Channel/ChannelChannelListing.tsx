@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
-import Image from "next/image";
 import Link from "next/link";
 import { fetchChannelFeaturedChannels } from "@/redux/slices/channelFeaturedChannelsSlice";
 

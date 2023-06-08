@@ -1,101 +1,103 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "../store";
-import { Welcome } from "@/types/homeFeedTypes";
+import { Welcome } from "@/types/hashtagTypes";
 import axios from "axios";
 import randomApiKey from "@/utils/randomApiKey";
 
-interface HomeFeedState {
+interface hashtagState {
   data: Welcome;
   status: "idle" | "loading" | "succeeded" | "failed";
 }
 
-const initialState: HomeFeedState = {
+const initialState: hashtagState = {
   data: {
-    continuation: "",
     data: [],
-    msg: "",
   },
   status: "idle",
 };
 
-export const fetchHomeFeed = createAsyncThunk(
-  "homeFeed/fetchHomeFeed",
-  async () => {
+export const fetchHashtagResult = createAsyncThunk(
+  "hashtag/fetchHashtagResult",
+  async (tag: string) => {
     const rapidAPIKey = randomApiKey();
 
-    const response = await axios.get(`https://yt-api.p.rapidapi.com/home`, {
+    const response = await axios.get(`https://yt-api.p.rapidapi.com/hashtag`, {
       headers: {
         "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
         "X-RapidAPI-Key": rapidAPIKey,
       },
       params: {
+        tag,
         lang: "en",
+        geo: "US",
       },
     });
-    console.log("homeFeed fetched");
+    console.log("hashtagResult fetched");
 
     return response.data;
   }
 );
 
-export const fetchAdditionalHomeFeed = createAsyncThunk(
-  "homeFeed/fetchAdditionalHomeFeed",
-  async ({ token }: { token?: string }, { getState }) => {
+export const fetchAdditionalHashtagResult = createAsyncThunk(
+  "hashtag/fetchAdditionalHashtagResult",
+  async ({ tag, token }: { tag: string; token: string }, { getState }) => {
     const rapidAPIKey = randomApiKey();
 
     const currentState = getState() as RootState;
-    const prevData = currentState.homeFeedReducer.data.data;
+    const prevData = currentState.hashtagReducer.data.data;
 
-    const response = await axios.get(`https://yt-api.p.rapidapi.com/home`, {
+    const response = await axios.get(`https://yt-api.p.rapidapi.com/hashtag`, {
       headers: {
         "X-RapidAPI-Host": "yt-api.p.rapidapi.com",
         "X-RapidAPI-Key": rapidAPIKey,
       },
       params: {
-        lang: "en",
+        tag,
         token,
+        lang: "en",
+        geo: "US",
       },
     });
 
     const newData = response.data.data;
     const newContinuation = response.data.continuation;
-    const combinedData = [...prevData, ...newData];
+    const combinedData = [...prevData!, ...newData];
 
-    console.log("homeFeed updated");
+    console.log("hashtagResult updated");
 
     return {
-      ...currentState.homeFeedReducer.data,
+      ...currentState.hashtagReducer.data,
       continuation: newContinuation,
       data: combinedData,
     };
   }
 );
 
-const homeFeedSlice = createSlice({
-  name: "homeFeed",
+const hashtagSlice = createSlice({
+  name: "hashtag",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHomeFeed.pending, (state) => {
+      .addCase(fetchHashtagResult.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchHomeFeed.fulfilled, (state, action) => {
+      .addCase(fetchHashtagResult.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
       })
-      .addCase(fetchHomeFeed.rejected, (state) => {
+      .addCase(fetchHashtagResult.rejected, (state) => {
         state.status = "failed";
       })
-      .addCase(fetchAdditionalHomeFeed.pending, (state) => {
+      .addCase(fetchAdditionalHashtagResult.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchAdditionalHomeFeed.fulfilled, (state, action) => {
+      .addCase(fetchAdditionalHashtagResult.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
       });
   },
 });
 
-export default homeFeedSlice.reducer;
+export default hashtagSlice.reducer;

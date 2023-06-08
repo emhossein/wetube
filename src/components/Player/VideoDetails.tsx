@@ -1,9 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
-
 import { LikeIcon, MoreIcon, ShareIcon, VerifiedIcon } from "../Icons";
 import React, { useState } from "react";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Welcome } from "@/types/videoTypes";
 import { Welcome as WelcomeChannel } from "@/types/channelDetailsTypes";
@@ -97,13 +94,6 @@ const VideoDetails = ({ data, channel }: iProps) => {
                 __html: extractUrlAndHashtags(data.result.description),
               }}
             />
-            <div className="flex flex-col text-blue-400">
-              {data.result.tags?.map((tag) => (
-                <Link href={`/hashtag/${tag.replaceAll(" ", "-")}`} key={tag}>
-                  #{tag.replaceAll(" ", "-")}
-                </Link>
-              ))}
-            </div>
           </div>
         </div>
         <button className="p-3" onClick={handleShowMore}>

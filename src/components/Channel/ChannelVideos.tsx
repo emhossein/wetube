@@ -1,13 +1,13 @@
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import React, { useEffect } from "react";
 import {
   fetchAdditionalChannelVideos,
   fetchChannelVideos,
 } from "@/redux/slices/channelVideosSlice";
-import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+
 import ChannelVideoContainer from "./ChannelVideoContainer";
-import { useBottomReached } from "@/hooks/useBottomReached";
 import LoadingSpinner from "../LoadingSpinner";
+import { useBottomReached } from "@/hooks/useBottomReached";
 
 const ChannelVideos = ({ id }: { id: string }) => {
   const dispatch = useAppDispatch();

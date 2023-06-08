@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 import ChannelHero from "@/components/Channel/ChannelHero";
 import ChannelTabs from "@/components/Channel/ChannelTabs";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchChannelDetails } from "@/redux/slices/channelDetailsSlice";
 import { tabChange } from "@/redux/slices/channelTabsStateSlice";
-
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
 
 const ChannelLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();

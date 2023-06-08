@@ -1,15 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import PlaylistHome from "@/components/Playlists/PlaylistHome";
-import { useBottomReached } from "@/hooks/useBottomReached";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import React, { useEffect } from "react";
 import {
   fetchAdditionalPlaylistDetails,
   fetchPlaylistDetails,
 } from "@/redux/slices/playlistDetailsSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
+import PlaylistHome from "@/components/Playlists/PlaylistHome";
+import { useBottomReached } from "@/hooks/useBottomReached";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
 
 const Playlist = () => {
   const pathname = usePathname();

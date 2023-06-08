@@ -1,12 +1,8 @@
+import ChannelList from "./ChannelList";
 import { DatumDatum } from "@/types/channelDetailsTypes";
 import React from "react";
-import { useAppSelector } from "@/redux/hooks";
-import Link from "next/link";
-import ChannelList from "./ChannelList";
 
 const ChannelShortsListing = ({ shorts }: { shorts: DatumDatum[] }) => {
-  const { data } = useAppSelector((state) => state.channelDetailsReducer);
-
   return (
     <div className="text-white">
       {shorts.map((short) => {
