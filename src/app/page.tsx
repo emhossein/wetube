@@ -19,9 +19,14 @@ export default function Home() {
   const dispatch = useAppDispatch();
   const { data, status } = useAppSelector((state) => state.homeFeedReducer);
   const { showGuide } = useAppSelector((state) => state.guideStateReducer);
+  const { data: shortsList } = useAppSelector(
+    (state) => state.shortsListReducer
+  );
 
   const shorts = data.data.filter((dt) => dt.type === "shorts_listing");
   const videos = data.data.filter((dt) => dt.type === "video_listing");
+
+  console.log(shortsList);
 
   useEffect(() => {
     dispatch(fetchHomeFeed());

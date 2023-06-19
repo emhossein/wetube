@@ -3,22 +3,29 @@
 "use client";
 
 import React, { useEffect } from "react";
+import {
+  deleteData,
+  fetchShortsSequence,
+} from "@/redux/slices/shortsSequenceSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import ShortsContainer from "@/components/Shorts/ShortsContainer";
 import { fetchAdditionalShorts } from "@/redux/slices/shortsVideoSlice";
-import { fetchShortsSequence } from "@/redux/slices/shortsSequenceSlice";
-import { useAppDispatch } from "@/redux/hooks";
-import { useSearchParams } from "next/navigation";
 
 const Page = () => {
   const searchParams = useSearchParams();
-  const shorts = searchParams.get("sh");
+  const pathname = usePathname();
+
+  const shortsId = searchParams.get("sh");
 
   const dispatch = useAppDispatch();
+  const { data } = useAppSelector((state) => state.shortsListReducer);
+  console.log(data);
 
   useEffect(() => {
-    dispatch(fetchAdditionalShorts({ id: shorts! }));
-    dispatch(fetchShortsSequence(shorts!));
+    dispatch(fetchAdditionalShorts({ id: shortsId! }));
+    dispatch(fetchShortsSequence(shortsId!));
   }, []);
 
   return (

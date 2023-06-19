@@ -80,7 +80,12 @@ export const fetchAdditionalShortsSequence = createAsyncThunk(
 const shortsSequenceSlice = createSlice({
   name: "shortsSequence",
   initialState,
-  reducers: {},
+  reducers: {
+    deleteData: (state) => {
+      state.data.data.length = 0;
+      console.log("deleted");
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchShortsSequence.pending, (state) => {
@@ -102,5 +107,7 @@ const shortsSequenceSlice = createSlice({
       });
   },
 });
+
+export const { deleteData } = shortsSequenceSlice.actions;
 
 export default shortsSequenceSlice.reducer;
